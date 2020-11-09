@@ -148,14 +148,4 @@ class Field
     {
         return $this->invitee;
     }
-
-    /**
-     * @param string $invitee
-     * @return Field
-     */
-    public function setInvitee(string $invitee): Field
-    {
-        $this->invitee = $invitee;
-        return $this;
-    }
 }

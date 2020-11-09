@@ -262,16 +262,6 @@ class Invitee
     }
 
     /**
-     * @param string $stateComment
-     * @return Invitee
-     */
-    public function setStateComment(string $stateComment): Invitee
-    {
-        $this->stateComment = $stateComment;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getRedirectUrl(): string

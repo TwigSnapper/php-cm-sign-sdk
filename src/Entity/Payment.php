@@ -19,6 +19,21 @@ class Payment
     private $currency;
 
     /**
+     * @var string
+     */
+    private $status;
+
+    /**
+     * @var string
+     */
+    private $paymentMethod;
+
+    /**
+     * @var string
+     */
+    private $paymentReference;
+
+    /**
      * @return int
      */
     public function getAmount(): int
@@ -52,5 +67,29 @@ class Payment
     {
         $this->currency = $currency;
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaymentMethod(): string
+    {
+        return $this->paymentMethod;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaymentReference(): string
+    {
+        return $this->paymentReference;
     }
 }
