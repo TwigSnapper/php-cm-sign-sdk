@@ -59,7 +59,7 @@ class Invitee
     private $state;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $stateComment;
 
@@ -259,6 +259,16 @@ class Invitee
     public function getStateComment(): string
     {
         return $this->stateComment;
+    }
+
+    /**
+     * @param string|null $stateComment
+     * @return Invitee
+     */
+    public function setStateComment($stateComment): Invitee
+    {
+        $this->stateComment = $stateComment;
+        return $this;
     }
 
     /**

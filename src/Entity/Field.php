@@ -52,6 +52,16 @@ class Field
     }
 
     /**
+     * @param string $id
+     * @return Field
+     */
+    public function setId(string $id): Field
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getType(): string
@@ -147,5 +157,15 @@ class Field
     public function getInvitee(): string
     {
         return $this->invitee;
+    }
+
+    /**
+     * @param string $invitee
+     * @return Field
+     */
+    public function setInvitee(string $invitee): Field
+    {
+        $this->invitee = $invitee;
+        return $this;
     }
 }

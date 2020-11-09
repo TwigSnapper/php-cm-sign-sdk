@@ -78,6 +78,16 @@ class Payment
     }
 
     /**
+     * @param string $status
+     * @return Payment
+     */
+    public function setStatus(string $status): Payment
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getPaymentMethod(): string
@@ -86,10 +96,30 @@ class Payment
     }
 
     /**
+     * @param string $paymentMethod
+     * @return Payment
+     */
+    public function setPaymentMethod(string $paymentMethod): Payment
+    {
+        $this->paymentMethod = $paymentMethod;
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getPaymentReference(): string
     {
         return $this->paymentReference;
+    }
+
+    /**
+     * @param string $paymentReference
+     * @return Payment
+     */
+    public function setPaymentReference(string $paymentReference): Payment
+    {
+        $this->paymentReference = $paymentReference;
+        return $this;
     }
 }

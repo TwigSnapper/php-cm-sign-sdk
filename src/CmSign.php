@@ -4,6 +4,7 @@ namespace CmSignSdk;
 
 use CmSignSdk\Entity\Dossier;
 use CmSignSdk\Entity\File;
+use CmSignSdk\Entity\Invite;
 use JsonMapper;
 use JsonMapper_Exception;
 
@@ -50,7 +51,10 @@ class CmSign implements CmSignInterface
             'file' => $filePath
         ];
 
-        return $this->mapToEntity($request->post($this->url . 'upload', $data), new File());
+        return $this->mapToEntity(
+            $request->post($this->url . 'upload', $data),
+            new File()
+        );
     }
 
     /**
@@ -69,8 +73,6 @@ class CmSign implements CmSignInterface
         ]);
 
         $data = [
-            'name' => 'Document Name',
-            'locale' => 'nl-NL',
             'files' => [
                 ['id' => $file->getId()]
             ],
@@ -136,7 +138,10 @@ class CmSign implements CmSignInterface
             ]
         ];
 
-        return $this->mapToEntity($request->post($this->url . 'dossiers', json_encode($data)), new Dossier());
+        return $this->mapToEntity(
+            $request->post($this->url . 'dossiers', json_encode($data)),
+            new Dossier()
+        );
     }
 
     /**
@@ -144,6 +149,7 @@ class CmSign implements CmSignInterface
      * @param $invitees
      * @return array|mixed
      * @throws ErrorResponse
+     * @throws JsonMapper_Exception
      */
     public function sendInvites(Dossier $dossier, $invitees)
     {
@@ -158,7 +164,10 @@ class CmSign implements CmSignInterface
             ];
         }
 
-        return $request->post($this->url . 'dossiers/' . $dossier->getId() . '/invites', json_encode($data));
+        return $this->mapToEntity(
+            $request->post($this->url . 'dossiers/' . $dossier->getId() . '/invites', json_encode($data)),
+            new Invite()
+        );
     }
 
     /**
@@ -171,5 +180,17 @@ class CmSign implements CmSignInterface
     {
         $mapper = new JsonMapper();
         return $mapper->map($data, $entity);
+    }
+
+    /**
+     * @param $data
+     * @param $entity
+     * @return mixed|object
+     * @throws JsonMapper_Exception
+     */
+    public function mapToEntities($data, $entity)
+    {
+        $mapper = new JsonMapper();
+        return $mapper->mapArray($data, [], $entity);
     }
 }

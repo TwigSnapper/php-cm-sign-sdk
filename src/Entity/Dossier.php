@@ -77,6 +77,16 @@ class Dossier
     }
 
     /**
+     * @param string $id
+     * @return Dossier
+     */
+    public function setId(string $id): Dossier
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getName(): string
@@ -103,6 +113,16 @@ class Dossier
     }
 
     /**
+     * @param string $state
+     * @return Dossier
+     */
+    public function setState(string $state): Dossier
+    {
+        $this->state = $state;
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getLocale(): string
@@ -126,6 +146,16 @@ class Dossier
     public function isCompleted(): bool
     {
         return $this->completed;
+    }
+
+    /**
+     * @param bool $completed
+     * @return Dossier
+     */
+    public function setCompleted(bool $completed): Dossier
+    {
+        $this->completed = $completed;
+        return $this;
     }
 
     /**
@@ -173,11 +203,31 @@ class Dossier
     }
 
     /**
+     * @param string $expiresAt
+     * @return Dossier
+     */
+    public function setExpiresAt(string $expiresAt): Dossier
+    {
+        $this->expiresAt = $expiresAt;
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getCreatedAt(): string
     {
         return $this->createdAt;
+    }
+
+    /**
+     * @param string $createdAt
+     * @return Dossier
+     */
+    public function setCreatedAt(string $createdAt): Dossier
+    {
+        $this->createdAt = $createdAt;
+        return $this;
     }
 
     /**

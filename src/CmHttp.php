@@ -34,7 +34,7 @@ class CmHttp implements CmHttpInterface
 
     /**
      * @param string $url
-     * @return array
+     * @return object
      * @throws ErrorResponse
      */
     public function get(string $url)
@@ -47,7 +47,7 @@ class CmHttp implements CmHttpInterface
     /**
      * @param string $url
      * @param mixed $data
-     * @return array
+     * @return object
      * @throws ErrorResponse
      */
     public function post(string $url, $data)
@@ -61,15 +61,15 @@ class CmHttp implements CmHttpInterface
 
     /**
      * @param $result
-     * @return mixed
+     * @return object
      * @throws ErrorResponse
      */
     public function handleResult($result)
     {
-        $json = json_decode($result, true);
-        if (isset($json['status']) && !in_array($json['status'], [200, 201])) {
-            throw new ErrorResponse($json['message'], $json['status']);
+        $obj = json_decode($result);
+        if (property_exists($obj, 'status') && !in_array($obj->status, [200, 201])) {
+            throw new ErrorResponse($obj->message, $obj->status);
         }
-        return $json;
+        return $obj;
     }
 }
