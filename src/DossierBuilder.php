@@ -37,10 +37,10 @@ class DossierBuilder implements DossierBuilderInterface
     }
 
     /**
-     * minimum: 60
-     * maximum: 7776000
-     * example: 2592000
-     * default: 2592000
+     * minimum: 60          1 min
+     * maximum: 7776000     90 days
+     * example: 2592000     30 days
+     * default: 2592000     30 days
      * @param int $seconds
      * @return DossierBuilder
      */
@@ -49,6 +49,21 @@ class DossierBuilder implements DossierBuilderInterface
         if ($seconds < 60) $seconds = 60;
         if ($seconds > 7776000) $seconds = 7776000;
         $this->dossier->setExpiresIn($seconds);
+        return $this;
+    }
+
+    /**
+     * minimum: 86400       1 day
+     * maximum: 7776000     90 days
+     * example: 604800      7 days
+     * @param int $seconds
+     * @return DossierBuilder
+     */
+    public function reminderIn(int $seconds): DossierBuilder
+    {
+        if ($seconds < 86400) $seconds = 86400;
+        if ($seconds > 7776000) $seconds = 7776000;
+        $this->dossier->setReminderIn($seconds);
         return $this;
     }
 

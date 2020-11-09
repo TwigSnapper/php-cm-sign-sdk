@@ -25,6 +25,12 @@ interface DossierBuilderInterface
     public function expiresIn(int $seconds): DossierBuilder;
 
     /**
+     * @param int $seconds
+     * @return DossierBuilder
+     */
+    public function reminderIn(int $seconds): DossierBuilder;
+
+    /**
      * @param Owner[] $owners
      * @return mixed
      */
