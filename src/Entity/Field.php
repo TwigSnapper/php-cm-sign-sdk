@@ -6,7 +6,7 @@ namespace CmSignSdk\Entity;
  * Class Field
  * @package CmSignSdk\Entity
  */
-class Field
+class Field implements \JsonSerializable
 {
     /**
      * @var string
@@ -42,6 +42,19 @@ class Field
      * @var string
      */
     private $invitee;
+
+    /**
+     * Field constructor.
+     * @param string $type
+     * @param string $file
+     * @param FieldLocation[] $locations
+     */
+    public function __construct(string $type, string $file, $locations = [])
+    {
+        $this->setType($type);
+        $this->setFile($file);
+        $this->setLocations($locations);
+    }
 
     /**
      * @return string
@@ -167,5 +180,19 @@ class Field
     {
         $this->invitee = $invitee;
         return $this;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'type' => $this->type,
+            'file' => $this->file,
+            'tag' => $this->tag,
+            'tagRequired' => $this->tagRequired,
+            'locations' => $this->locations,
+        ];
     }
 }

@@ -6,7 +6,7 @@ namespace CmSignSdk\Entity;
  * Class Invitee
  * @package CmSignSdk\Entity
  */
-class Invitee
+class Invitee implements \JsonSerializable
 {
     /**
      * @var string
@@ -26,17 +26,12 @@ class Invitee
     /**
      * @var int
      */
-    private $position;
+    private $position = 1;
 
     /**
      * @var string[]
      */
     private $identificationMethods;
-
-    /**
-     * @var Payment[]
-     */
-    private $payments;
 
     /**
      * @var string
@@ -72,6 +67,22 @@ class Invitee
      * @var Field[]
      */
     private $fields;
+
+    /**
+     * Invitee constructor.
+     * @param $name
+     * @param $email
+     * @param $phoneNumber
+     * @param array $fields
+     */
+    public function __construct($name, $email, $phoneNumber, $fields = [])
+    {
+        $this->setName($name);
+        $this->setEmail($email);
+        $this->setPhoneNumber($phoneNumber);
+        $this->setFields($fields);
+        $this->setLocale('nl-NL');
+    }
 
     /**
      * @return string
@@ -160,24 +171,6 @@ class Invitee
     public function setIdentificationMethods(array $identificationMethods): Invitee
     {
         $this->identificationMethods = $identificationMethods;
-        return $this;
-    }
-
-    /**
-     * @return Payment[]
-     */
-    public function getPayments(): array
-    {
-        return $this->payments;
-    }
-
-    /**
-     * @param Payment[] $payments
-     * @return Invitee
-     */
-    public function setPayments(array $payments): Invitee
-    {
-        $this->payments = $payments;
         return $this;
     }
 
@@ -305,5 +298,23 @@ class Invitee
     {
         $this->fields = $fields;
         return $this;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'name' => $this->name,
+            'email' => $this->email,
+            'locale' => $this->locale,
+            'position' => $this->position,
+            'identificationMethods' => $this->identificationMethods,
+            'phoneNumber' => $this->phoneNumber,
+            'readOnly' => $this->readOnly,
+            'redirectUrl' => $this->redirectUrl,
+            'fields' => $this->fields
+        ];
     }
 }

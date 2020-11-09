@@ -3,6 +3,8 @@
 namespace CmSignSdk;
 
 use CmSignSdk\Entity\Dossier;
+use CmSignSdk\Entity\Field;
+use CmSignSdk\Entity\FieldLocation;
 use CmSignSdk\Entity\File;
 use CmSignSdk\Entity\Invitee;
 use CmSignSdk\Entity\Owner;
@@ -13,6 +15,9 @@ use CmSignSdk\Entity\Owner;
  */
 class DossierBuilder implements DossierBuilderInterface
 {
+    /**
+     * @var Dossier
+     */
     private $dossier;
 
     /**
@@ -24,6 +29,14 @@ class DossierBuilder implements DossierBuilderInterface
         $this->dossier = new Dossier();
         $this->dossier->setName($name);
         $this->setLocale('nl-NL');
+    }
+
+    /**
+     * @return string
+     */
+    public function getJson(): string
+    {
+        return json_encode($this->dossier);
     }
 
     /**
@@ -107,5 +120,16 @@ class DossierBuilder implements DossierBuilderInterface
         ));
 
         return $this;
+    }
+
+    public function createField()
+    {
+
+    }
+
+    public function createLocation()
+    {
+        $location = new FieldLocation();
+
     }
 }

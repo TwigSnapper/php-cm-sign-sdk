@@ -59,12 +59,13 @@ class CmSign implements CmSignInterface
 
     /**
      * @param File $file
+     * @param string $json
      * @param string $redirectUrl
      * @return array|Entity\Dossier
      * @throws ErrorResponse
      * @throws JsonMapper_Exception
      */
-    public function createDossier(File $file, string $redirectUrl): Dossier
+    public function createDossier(File $file, string $json, string $redirectUrl): Dossier
     {
         $request = new CmHttp();
         $request->setHeaders([
@@ -72,74 +73,8 @@ class CmSign implements CmSignInterface
             'Content-Type: application/json'
         ]);
 
-        $data = [
-            'files' => [
-                ['id' => $file->getId()]
-            ],
-            'invitees' => [
-                [
-                    'name' => 'Jane',
-                    'position' => 1,
-                    'locale' => 'nl-NL',
-                    'redirectUrl' => $redirectUrl,
-                    'identificationMethods' => ['otp'],
-                    'phoneNumber' => '+31612345678',
-                    'fields' => [
-                        [
-                            'type' => 'text',
-                            'file' => $file->getId(),
-                            'locations' => [
-                                [
-                                    'range' => '1',
-                                    'unit' => 'point',
-                                    'x' => 0,
-                                    'y' => 0,
-                                    'width' => 612,
-                                    'height' => 792
-                                ]
-                            ]
-                        ],
-                        [
-                            'type' => 'checkbox',
-                            'file' => $file->getId(),
-                            'locations' => [
-                                [
-                                    'range' => '1',
-                                    'unit' => 'point',
-                                    'x' => 50,
-                                    'y' => 50,
-                                    'width' => 20,
-                                    'height' => 20
-                                ]
-                            ]
-                        ],
-                        [
-                            'type' => 'signature',
-                            'file' => $file->getId(),
-                            'locations' => [
-                                [
-                                    'range' => '1',
-                                    'unit' => 'point',
-                                    'x' => 500,
-                                    'y' => 750,
-                                    'width' => 100,
-                                    'height' => 50
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            'owners' => [
-                [
-                    'name' => 'Joe',
-                    'email' => 'my@email.nl'
-                ]
-            ]
-        ];
-
         return $this->mapToEntity(
-            $request->post($this->url . 'dossiers', json_encode($data)),
+            $request->post($this->url . 'dossiers', $json),
             new Dossier()
         );
     }
@@ -185,7 +120,7 @@ class CmSign implements CmSignInterface
     /**
      * @param $data
      * @param $entity
-     * @return mixed|object
+     * @return array
      * @throws JsonMapper_Exception
      */
     public function mapToEntities($data, $entity)

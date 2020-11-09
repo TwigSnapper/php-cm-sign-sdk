@@ -19,10 +19,11 @@ interface CmSignInterface
 
     /**
      * @param File $file
+     * @param string $json
      * @param string $redirectUrl
      * @return Dossier
      */
-    public function createDossier(File $file, string $redirectUrl): Dossier;
+    public function createDossier(File $file, string $json, string $redirectUrl): Dossier;
 
     /**
      * @param Dossier $dossier

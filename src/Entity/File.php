@@ -6,7 +6,7 @@ namespace CmSignSdk\Entity;
  * Class File
  * @package CmSignSdk\Entity
  */
-class File
+class File implements \JsonSerializable
 {
     /**
      * @var string
@@ -32,11 +32,6 @@ class File
      * @var string
      */
     private $contentType;
-
-    /**
-     * @var string
-     */
-    private $derivativeOf;
 
     /**
      * @return string
@@ -129,20 +124,13 @@ class File
     }
 
     /**
-     * @return string
+     * Specify data which should be serialized to JSON
      */
-    public function getDerivativeOf(): string
+    public function jsonSerialize()
     {
-        return $this->derivativeOf;
-    }
-
-    /**
-     * @param string $derivativeOf
-     * @return File
-     */
-    public function setDerivativeOf(string $derivativeOf): File
-    {
-        $this->derivativeOf = $derivativeOf;
-        return $this;
+        return [
+            'id' => $this->id,
+            'name' => $this->name
+        ];
     }
 }

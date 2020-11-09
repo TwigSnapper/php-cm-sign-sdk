@@ -6,7 +6,7 @@ namespace CmSignSdk\Entity;
  * Class Dossier
  * @package CmSignSdk\Entity
  */
-class Dossier
+class Dossier implements \JsonSerializable
 {
     /**
      * @var string
@@ -282,5 +282,19 @@ class Dossier
     {
         $this->invitees = $invitees;
         return $this;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'name' => $this->name,
+            'locale' => $this->locale,
+            'files' => $this->files,
+            'owners' => $this->owners,
+            'invitees' => $this->invitees
+        ];
     }
 }

@@ -6,7 +6,7 @@ namespace CmSignSdk\Entity;
  * Class Owner
  * @package CmSignSdk\Entity
  */
-class Owner
+class Owner implements \JsonSerializable
 {
     /**
      * @var string
@@ -22,6 +22,19 @@ class Owner
      * @var boolean
      */
     private $cc = false;
+
+    /**
+     * Owner constructor.
+     * @param string $name
+     * @param string $email
+     * @param bool $cc
+     */
+    public function __construct(string $name, string $email, $cc = false)
+    {
+        $this->name = $name;
+        $this->email = $email;
+        $this->cc = $cc;
+    }
 
     /**
      * @return string
@@ -75,5 +88,17 @@ class Owner
     {
         $this->cc = $cc;
         return $this;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'name' => $this->name,
+            'email' => $this->email,
+            'cc' => $this->cc,
+        ];
     }
 }
