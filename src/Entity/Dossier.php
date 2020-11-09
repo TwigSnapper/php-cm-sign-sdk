@@ -54,6 +54,21 @@ class Dossier
     private $createdAt;
 
     /**
+     * @var File[]
+     */
+    private $files = [];
+
+    /**
+     * @var Owner[]
+     */
+    private $owners = [];
+
+    /**
+     * @var Invitee[]
+     */
+    private $invitees = [];
+
+    /**
      * @return string
      */
     public function getId(): string
@@ -202,6 +217,60 @@ class Dossier
     public function setCreatedAt(string $createdAt): Dossier
     {
         $this->createdAt = $createdAt;
+        return $this;
+    }
+
+    /**
+     * @return File[]
+     */
+    public function getFiles(): array
+    {
+        return $this->files;
+    }
+
+    /**
+     * @param File[] $files
+     * @return Dossier
+     */
+    public function setFiles(array $files): Dossier
+    {
+        $this->files = $files;
+        return $this;
+    }
+
+    /**
+     * @return Owner[]
+     */
+    public function getOwners(): array
+    {
+        return $this->owners;
+    }
+
+    /**
+     * @param Owner[] $owners
+     * @return Dossier
+     */
+    public function setOwners(array $owners): Dossier
+    {
+        $this->owners = $owners;
+        return $this;
+    }
+
+    /**
+     * @return Invitee[]
+     */
+    public function getInvitees(): array
+    {
+        return $this->invitees;
+    }
+
+    /**
+     * @param Invitee[] $invitees
+     * @return Dossier
+     */
+    public function setInvitees(array $invitees): Dossier
+    {
+        $this->invitees = $invitees;
         return $this;
     }
 }
