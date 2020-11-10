@@ -33,7 +33,7 @@ class Field implements JsonSerializable
     /**
      * @var boolean
      */
-    private $tagRequired = true;
+    private $tagRequired = false;
 
     /**
      * @var FieldLocation[]
