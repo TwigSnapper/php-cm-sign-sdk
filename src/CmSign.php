@@ -81,7 +81,7 @@ class CmSign implements CmSignInterface
 
     /**
      * @param Dossier $dossier
-     * @return array|mixed
+     * @return Invite[]
      * @throws ErrorResponse
      * @throws JsonMapper_Exception
      */

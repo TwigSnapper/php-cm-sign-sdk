@@ -67,7 +67,7 @@ class CmHttp implements CmHttpInterface
     public function handleResult($result)
     {
         $obj = json_decode($result);
-        if (property_exists($obj, 'status') && !in_array($obj->status, [200, 201])) {
+        if (is_object($obj) && property_exists($obj, 'status') && !in_array($obj->status, [200, 201])) {
             throw new ErrorResponse($obj->message, $obj->status);
         }
         return $obj;
