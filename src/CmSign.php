@@ -1,6 +1,6 @@
 <?php
 
-namespace CmSignSdk;
+namespace chrissmits91\CmSignSdk;
 
 use CmSignSdk\Entity\Dossier;
 use CmSignSdk\Entity\File;
@@ -81,18 +81,17 @@ class CmSign implements CmSignInterface
 
     /**
      * @param Dossier $dossier
-     * @param $invitees
      * @return array|mixed
      * @throws ErrorResponse
      * @throws JsonMapper_Exception
      */
-    public function sendInvites(Dossier $dossier, $invitees)
+    public function sendInvites(Dossier $dossier)
     {
         $request = new CmHttp();
         $request->setHeaders(['Authorization: Bearer ' . $this->token, 'Content-Type: application/json']);
 
         $data = [];
-        foreach ($invitees as $invitee) {
+        foreach ($dossier->getInvitees() as $invitee) {
             $data[] = [
                 'inviteeId' => $invitee['id'],
                 'expiresIn' => 2592000

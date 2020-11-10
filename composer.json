@@ -4,9 +4,9 @@
     "type": "library",
     "license": "MIT",
     "autoload": {
-        "psr-0": {
-            "CmSignSdk": "src/",
-            "CmSignSdk\\Tests": "tests/"
+        "psr-4": {
+            "chrissmits91\\CmSignSdk\\": "src/",
+            "chrissmits91\\CmSignSdk\\Entity\\": "src/Entity"
         }
     },
     "authors": [

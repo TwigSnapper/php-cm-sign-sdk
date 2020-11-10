@@ -1,6 +1,6 @@
 <?php
 
-namespace CmSignSdk;
+namespace chrissmits91\CmSignSdk;
 
 use CmSignSdk\Entity\Dossier;
 use CmSignSdk\Entity\File;
@@ -27,8 +27,7 @@ interface CmSignInterface
 
     /**
      * @param Dossier $dossier
-     * @param $invitees
      * @return mixed
      */
-    public function sendInvites(Dossier $dossier, $invitees);
+    public function sendInvites(Dossier $dossier);
 }

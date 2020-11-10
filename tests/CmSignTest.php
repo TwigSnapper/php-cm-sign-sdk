@@ -1,9 +1,8 @@
 <?php
 
-use CmSignSdk\CmSign;
-use CmSignSdk\Entity\Dossier;
-use CmSignSdk\Entity\File;
-use CmSignSdk\Entity\Invite;
+use chrissmits91\CmSignSdk\CmSign;
+use chrissmits91\CmSignSdk\Entity\Dossier;
+use chrissmits91\CmSignSdk\Entity\Invite;
 use PHPUnit\Framework\TestCase;
 
 class CmSignTest extends TestCase

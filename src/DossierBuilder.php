@@ -1,10 +1,8 @@
 <?php
 
-namespace CmSignSdk;
+namespace chrissmits91\CmSignSdk;
 
 use CmSignSdk\Entity\Dossier;
-use CmSignSdk\Entity\Field;
-use CmSignSdk\Entity\FieldLocation;
 use CmSignSdk\Entity\File;
 use CmSignSdk\Entity\Invitee;
 use CmSignSdk\Entity\Owner;
@@ -120,16 +118,5 @@ class DossierBuilder implements DossierBuilderInterface
         ));
 
         return $this;
-    }
-
-    public function createField()
-    {
-
-    }
-
-    public function createLocation()
-    {
-        $location = new FieldLocation();
-
     }
 }

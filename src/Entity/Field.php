@@ -1,6 +1,6 @@
 <?php
 
-namespace CmSignSdk\Entity;
+namespace chrissmits91\CmSignSdk\Entity;
 
 /**
  * Class Field

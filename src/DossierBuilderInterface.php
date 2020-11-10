@@ -1,6 +1,6 @@
 <?php
 
-namespace CmSignSdk;
+namespace chrissmits91\CmSignSdk;
 
 use CmSignSdk\Entity\File;
 use CmSignSdk\Entity\Invitee;
