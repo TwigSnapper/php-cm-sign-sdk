@@ -336,10 +336,10 @@ class Invitee implements JsonSerializable
             'position' => $this->position,
             'locale' => $this->locale,
             'fields' => $this->fields,
-//            'identificationMethods' => $this->identificationMethods,
-//            'phoneNumber' => $this->phoneNumber,
-//            'readOnly' => $this->readOnly,
-//            'redirectUrl' => $this->redirectUrl,
+            'identificationMethods' => $this->identificationMethods,
+            'phoneNumber' => $this->phoneNumber,
+            'readOnly' => $this->readOnly,
+            'redirectUrl' => $this->redirectUrl,
         ];
     }
 }

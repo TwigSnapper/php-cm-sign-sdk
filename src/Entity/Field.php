@@ -28,7 +28,7 @@ class Field implements JsonSerializable
     /**
      * @var string
      */
-    private $tag = '';
+    private $tag;
 
     /**
      * @var boolean
