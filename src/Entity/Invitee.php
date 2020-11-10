@@ -333,13 +333,13 @@ class Invitee implements JsonSerializable
         return [
             'name' => $this->name,
             'email' => $this->email,
-            'locale' => $this->locale,
             'position' => $this->position,
-            'identificationMethods' => $this->identificationMethods,
-            'phoneNumber' => $this->phoneNumber,
-            'readOnly' => $this->readOnly,
-            'redirectUrl' => $this->redirectUrl,
-            'fields' => $this->fields
+            'locale' => $this->locale,
+            'fields' => $this->fields,
+//            'identificationMethods' => $this->identificationMethods,
+//            'phoneNumber' => $this->phoneNumber,
+//            'readOnly' => $this->readOnly,
+//            'redirectUrl' => $this->redirectUrl,
         ];
     }
 }

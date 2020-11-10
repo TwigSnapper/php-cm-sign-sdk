@@ -132,7 +132,6 @@ class File implements JsonSerializable
     {
         return [
             'id' => $this->id,
-            'name' => $this->name
         ];
     }
 }
