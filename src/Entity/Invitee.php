@@ -51,7 +51,7 @@ class Invitee implements JsonSerializable
     private $readOnly = false;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $state;
 
@@ -239,10 +239,10 @@ class Invitee implements JsonSerializable
     }
 
     /**
-     * @param string $state
+     * @param string|null $state
      * @return Invitee
      */
-    public function setState(string $state): Invitee
+    public function setState($state): Invitee
     {
         $this->state = $state;
         return $this;
