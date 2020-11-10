@@ -11,7 +11,7 @@ use JsonSerializable;
 class Invitee implements JsonSerializable
 {
     /**
-     * @var int
+     * @var string
      */
     private $id;
 
@@ -92,18 +92,18 @@ class Invitee implements JsonSerializable
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getId(): int
+    public function getId(): string
     {
         return $this->id;
     }
 
     /**
-     * @param int $id
+     * @param string $id
      * @return Invitee
      */
-    public function setId(int $id): Invitee
+    public function setId(string $id): Invitee
     {
         $this->id = $id;
         return $this;
