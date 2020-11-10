@@ -39,7 +39,7 @@ class Invite
     private $reminder;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $emailSentAt;
 
@@ -175,10 +175,10 @@ class Invite
     }
 
     /**
-     * @param string $emailSentAt
+     * @param string|null $emailSentAt
      * @return Invite
      */
-    public function setEmailSentAt(string $emailSentAt): Invite
+    public function setEmailSentAt($emailSentAt): Invite
     {
         $this->emailSentAt = $emailSentAt;
         return $this;
