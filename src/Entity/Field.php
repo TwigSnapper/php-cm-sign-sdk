@@ -26,7 +26,7 @@ class Field implements JsonSerializable
     private $file;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $tag;
 
@@ -34,6 +34,7 @@ class Field implements JsonSerializable
      * @var boolean
      */
     private $tagRequired = false;
+
 
     /**
      * @var FieldLocation[]
@@ -121,10 +122,10 @@ class Field implements JsonSerializable
     }
 
     /**
-     * @param string $tag
+     * @param string|null $tag
      * @return Field
      */
-    public function setTag(string $tag): Field
+    public function setTag($tag): Field
     {
         $this->tag = $tag;
         return $this;
