@@ -41,7 +41,7 @@ class Invitee implements JsonSerializable
     private $phoneNumber;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $reference;
 
@@ -203,10 +203,10 @@ class Invitee implements JsonSerializable
     }
 
     /**
-     * @param string $reference
+     * @param string|null $reference
      * @return Invitee
      */
-    public function setReference(string $reference): Invitee
+    public function setReference($reference): Invitee
     {
         $this->reference = $reference;
         return $this;
