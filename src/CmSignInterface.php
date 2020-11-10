@@ -2,8 +2,8 @@
 
 namespace chrissmits91\CmSignSdk;
 
-use CmSignSdk\Entity\Dossier;
-use CmSignSdk\Entity\File;
+use chrissmits91\CmSignSdk\Entity\Dossier;
+use chrissmits91\CmSignSdk\Entity\File;
 
 /**
  * Interface CmSignInterface

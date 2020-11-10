@@ -1,11 +1,11 @@
 <?php
 
-use CmSignSdk\DossierBuilder;
-use CmSignSdk\Entity\Field;
-use CmSignSdk\Entity\FieldLocation;
-use CmSignSdk\Entity\File;
-use CmSignSdk\Entity\Invitee;
-use CmSignSdk\Entity\Owner;
+use chrissmits91\CmSignSdk\DossierBuilder;
+use chrissmits91\CmSignSdk\Entity\Field;
+use chrissmits91\CmSignSdk\Entity\FieldLocation;
+use chrissmits91\CmSignSdk\Entity\File;
+use chrissmits91\CmSignSdk\Entity\Invitee;
+use chrissmits91\CmSignSdk\Entity\Owner;
 use PHPUnit\Framework\TestCase;
 
 class DossierBuilderTest extends TestCase

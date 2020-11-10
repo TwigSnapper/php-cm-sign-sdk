@@ -2,11 +2,13 @@
 
 namespace chrissmits91\CmSignSdk\Entity;
 
+use JsonSerializable;
+
 /**
  * Class Dossier
  * @package CmSignSdk\Entity
  */
-class Dossier implements \JsonSerializable
+class Dossier implements JsonSerializable
 {
     /**
      * @var string

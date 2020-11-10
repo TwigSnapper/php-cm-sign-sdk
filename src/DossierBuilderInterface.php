@@ -2,9 +2,9 @@
 
 namespace chrissmits91\CmSignSdk;
 
-use CmSignSdk\Entity\File;
-use CmSignSdk\Entity\Invitee;
-use CmSignSdk\Entity\Owner;
+use chrissmits91\CmSignSdk\Entity\File;
+use chrissmits91\CmSignSdk\Entity\Invitee;
+use chrissmits91\CmSignSdk\Entity\Owner;
 
 /**
  * Interface DossierBuilderInterface

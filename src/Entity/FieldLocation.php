@@ -2,11 +2,13 @@
 
 namespace chrissmits91\CmSignSdk\Entity;
 
+use JsonSerializable;
+
 /**
  * Class FieldLocation
  * @package CmSignSdk\Entity
  */
-class FieldLocation implements \JsonSerializable
+class FieldLocation implements JsonSerializable
 {
     /**
      * @var string

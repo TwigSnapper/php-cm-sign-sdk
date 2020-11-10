@@ -2,9 +2,9 @@
 
 namespace chrissmits91\CmSignSdk;
 
-use CmSignSdk\Entity\Dossier;
-use CmSignSdk\Entity\File;
-use CmSignSdk\Entity\Invite;
+use chrissmits91\CmSignSdk\Entity\Dossier;
+use chrissmits91\CmSignSdk\Entity\File;
+use chrissmits91\CmSignSdk\Entity\Invite;
 use JsonMapper;
 use JsonMapper_Exception;
 

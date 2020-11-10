@@ -2,11 +2,13 @@
 
 namespace chrissmits91\CmSignSdk\Entity;
 
+use JsonSerializable;
+
 /**
  * Class Invitee
  * @package CmSignSdk\Entity
  */
-class Invitee implements \JsonSerializable
+class Invitee implements JsonSerializable
 {
     /**
      * @var string

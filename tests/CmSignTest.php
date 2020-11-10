@@ -2,6 +2,7 @@
 
 use chrissmits91\CmSignSdk\CmSign;
 use chrissmits91\CmSignSdk\Entity\Dossier;
+use chrissmits91\CmSignSdk\Entity\File;
 use chrissmits91\CmSignSdk\Entity\Invite;
 use PHPUnit\Framework\TestCase;
 
@@ -43,10 +44,6 @@ class CmSignTest extends TestCase
 
         $this->assertCount(1, $dossier->getInvitees());
         $this->assertEquals('Peter Invitee', $dossier->getInvitees()[0]->getName());
-
-        $this->assertCount(1, $dossier->getInvitees()[0]->getPayments());
-        $this->assertEquals(100, $dossier->getInvitees()[0]->getPayments()[0]->getAmount());
-        $this->assertEquals('EUR', $dossier->getInvitees()[0]->getPayments()[0]->getCurrency());
 
         $this->assertCount(1, $dossier->getInvitees()[0]->getFields());
         $this->assertCount(1, $dossier->getInvitees()[0]->getFields()[0]->getLocations());

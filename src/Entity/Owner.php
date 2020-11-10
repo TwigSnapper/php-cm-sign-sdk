@@ -2,11 +2,13 @@
 
 namespace chrissmits91\CmSignSdk\Entity;
 
+use JsonSerializable;
+
 /**
  * Class Owner
  * @package CmSignSdk\Entity
  */
-class Owner implements \JsonSerializable
+class Owner implements JsonSerializable
 {
     /**
      * @var string
@@ -21,7 +23,7 @@ class Owner implements \JsonSerializable
     /**
      * @var boolean
      */
-    private $cc = false;
+    private $cc;
 
     /**
      * Owner constructor.
