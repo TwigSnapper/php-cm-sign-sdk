@@ -93,7 +93,7 @@ class CmSign implements CmSignInterface
         $data = [];
         foreach ($dossier->getInvitees() as $invitee) {
             $data[] = [
-                'inviteeId' => $invitee['id'],
+                'inviteeId' => $invitee->getId(),
                 'expiresIn' => 2592000
             ];
         }

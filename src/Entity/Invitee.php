@@ -11,6 +11,11 @@ use JsonSerializable;
 class Invitee implements JsonSerializable
 {
     /**
+     * @var int
+     */
+    private $id;
+
+    /**
      * @var string
      */
     private $name;
@@ -84,6 +89,24 @@ class Invitee implements JsonSerializable
         $this->setPhoneNumber($phoneNumber);
         $this->setFields($fields);
         $this->setLocale('nl-NL');
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return Invitee
+     */
+    public function setId(int $id): Invitee
+    {
+        $this->id = $id;
+        return $this;
     }
 
     /**
