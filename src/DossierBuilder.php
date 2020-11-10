@@ -34,7 +34,8 @@ class DossierBuilder implements DossierBuilderInterface
      */
     public function getJson(): string
     {
-        return json_encode($this->dossier);
+        $json = json_encode($this->dossier);
+        return preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', $json);
     }
 
     /**
