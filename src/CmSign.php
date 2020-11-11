@@ -58,6 +58,22 @@ class CmSign implements CmSignInterface
     }
 
     /**
+     * @param Dossier $dossier
+     * @param string $type
+     * @return mixed
+     * @throws ErrorResponse
+     */
+    public function downloadDocument(Dossier $dossier, string $type = 'file')
+    {
+        $request = new CmHttp();
+        $request->setHeaders(['Authorization: Bearer ' . $this->token]);
+
+        return $request->get($this->url . 'dossiers/' . $dossier->getId() . '/download', [
+            'type' => $type
+        ]);
+    }
+
+    /**
      * @param File $file
      * @param string $json
      * @param string $redirectUrl

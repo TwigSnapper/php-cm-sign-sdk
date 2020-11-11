@@ -34,12 +34,14 @@ class CmHttp implements CmHttpInterface
 
     /**
      * @param string $url
+     * @param array $queryParams
      * @return object
      * @throws ErrorResponse
      */
-    public function get(string $url)
+    public function get(string $url, array $queryParams = [])
     {
         curl_setopt($this->ch, CURLOPT_URL, $url);
+        curl_setopt($this->ch, CURLOPT_POSTFIELDS, http_build_query($queryParams));
 
         return $this->handleResult(curl_exec($this->ch));
     }

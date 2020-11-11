@@ -18,6 +18,13 @@ interface CmSignInterface
     public function uploadDocument(string $documentPath): File;
 
     /**
+     * @param Dossier $dossier
+     * @param string $type
+     * @return mixed
+     */
+    public function downloadDocument(Dossier $dossier, string $type = 'file');
+
+    /**
      * @param File $file
      * @param string $json
      * @param string $redirectUrl
