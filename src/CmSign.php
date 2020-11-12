@@ -71,6 +71,9 @@ class CmSign implements CmSignInterface
 
         $documentFields = SimpleExcelReader::create($path)->getRows()->all();
         foreach ($documentFields as $documentField) {
+            if (empty($documentField['name'])) {
+                continue;
+            }
             $field = new Field($documentField['type'], $documentId, [
                 new FieldLocation(
                     (int)$documentField['x'],
