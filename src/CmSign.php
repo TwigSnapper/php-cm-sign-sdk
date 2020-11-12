@@ -3,10 +3,13 @@
 namespace chrissmits91\CmSignSdk;
 
 use chrissmits91\CmSignSdk\Entity\Dossier;
+use chrissmits91\CmSignSdk\Entity\Field;
+use chrissmits91\CmSignSdk\Entity\FieldLocation;
 use chrissmits91\CmSignSdk\Entity\File;
 use chrissmits91\CmSignSdk\Entity\Invite;
 use JsonMapper;
 use JsonMapper_Exception;
+use Spatie\SimpleExcel\SimpleExcelReader;
 
 /**
  * Class CmSign
@@ -55,6 +58,28 @@ class CmSign implements CmSignInterface
             $request->post($this->url . 'upload', $data),
             new File()
         );
+    }
+
+    /**
+     * @param string $path
+     * @param string $documentId
+     * @return Field[]
+     */
+    public function parseDocumentFieldsFile(string $path, string $documentId)
+    {
+        $fields = [];
+
+        SimpleExcelReader::create($path)->getRows()
+            ->each(function(array $row) use ($documentId, $fields) {
+                $field = new Field($row['type'], $documentId, [
+                    new FieldLocation($row['x'], $row['y'], $row['width'], $row['height'], $row['page'])
+                ]);
+                $field->setTag($row['name']);
+                $field->setTagRequired(false);
+                $fields[] = $field;
+            });
+
+        return $fields;
     }
 
     /**

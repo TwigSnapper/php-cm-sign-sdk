@@ -3,6 +3,7 @@
 namespace chrissmits91\CmSignSdk;
 
 use chrissmits91\CmSignSdk\Entity\Dossier;
+use chrissmits91\CmSignSdk\Entity\Field;
 use chrissmits91\CmSignSdk\Entity\File;
 
 /**
@@ -16,6 +17,13 @@ interface CmSignInterface
      * @return File
      */
     public function uploadDocument(string $documentPath): File;
+
+    /**
+     * @param string $path
+     * @param string $documentId
+     * @return Field[]
+     */
+    public function parseDocumentFieldsFile(string $path, string $documentId);
 
     /**
      * @param Dossier $dossier
