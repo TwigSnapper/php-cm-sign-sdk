@@ -72,7 +72,7 @@ class CmSign implements CmSignInterface
         SimpleExcelReader::create($path)->getRows()
             ->each(function(array $row) use ($documentId, $fields) {
                 $field = new Field($row['type'], $documentId, [
-                    new FieldLocation($row['x'], $row['y'], $row['width'], $row['height'], $row['page'])
+                    new FieldLocation((int)$row['x'], (int)$row['y'], (int)$row['width'], (int)$row['height'], $row['page'])
                 ]);
                 $field->setTag($row['name']);
                 $field->setTagRequired(false);
