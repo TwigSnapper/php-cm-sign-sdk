@@ -83,8 +83,6 @@ class CmSign implements CmSignInterface
                     $documentField['page']
                 )
             ]);
-            $field->setTag($documentField['name']);
-            $field->setTagRequired(false);
             $fields[] = $field;
         }
 
