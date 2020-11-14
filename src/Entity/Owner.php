@@ -13,17 +13,17 @@ class Owner implements JsonSerializable
     /**
      * @var string
      */
-    private $name;
+    private string $name;
 
     /**
      * @var string
      */
-    private $email;
+    private string $email;
 
     /**
      * @var boolean
      */
-    private $cc;
+    private bool $cc;
 
     /**
      * Owner constructor.

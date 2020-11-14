@@ -13,27 +13,27 @@ class File implements JsonSerializable
     /**
      * @var string
      */
-    private $id;
+    private string $id;
 
     /**
      * @var string
      */
-    private $name;
+    private string $name;
 
     /**
      * @var string
      */
-    private $hash;
+    private string $hash;
 
     /**
      * @var string
      */
-    private $uploadDateTime;
+    private string $uploadDateTime;
 
     /**
      * @var string
      */
-    private $contentType;
+    private string $contentType;
 
     /**
      * @return string

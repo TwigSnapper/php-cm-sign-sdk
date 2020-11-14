@@ -13,62 +13,62 @@ class Dossier implements JsonSerializable
     /**
      * @var string
      */
-    private $id;
+    private string $id;
 
     /**
      * @var string
      */
-    private $name;
+    private string $name;
 
     /**
      * @var string
      */
-    private $state;
+    private string $state;
 
     /**
      * @var string
      */
-    private $locale;
+    private string $locale;
 
     /**
      * @var boolean
      */
-    private $completed;
+    private bool $completed;
 
     /**
      * @var int
      */
-    private $expiresIn = 2592000;
+    private int $expiresIn = 2592000;
 
     /**
      * @var int
      */
-    private $reminderIn;
+    private int $reminderIn;
 
     /**
      * @var string
      */
-    private $expiresAt;
+    private string $expiresAt;
 
     /**
      * @var string
      */
-    private $createdAt;
+    private string $createdAt;
 
     /**
      * @var File[]
      */
-    private $files = [];
+    private array $files = [];
 
     /**
      * @var Owner[]
      */
-    private $owners = [];
+    private array $owners = [];
 
     /**
      * @var Invitee[]
      */
-    private $invitees = [];
+    private array $invitees = [];
 
     /**
      * @return string

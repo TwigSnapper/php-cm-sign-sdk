@@ -13,38 +13,38 @@ class Field implements JsonSerializable
     /**
      * @var string
      */
-    private $id;
+    private string $id;
 
     /**
      * @var string
      */
-    private $type;
+    private string $type;
 
     /**
      * @var string
      */
-    private $file;
+    private string $file;
 
     /**
      * @var string|null
      */
-    private $tag;
+    private ?string $tag;
 
     /**
      * @var boolean
      */
-    private $tagRequired = false;
+    private bool $tagRequired = false;
 
 
     /**
      * @var FieldLocation[]
      */
-    private $locations = [];
+    private array $locations = [];
 
     /**
      * @var string
      */
-    private $invitee;
+    private string $invitee;
 
     /**
      * Field constructor.

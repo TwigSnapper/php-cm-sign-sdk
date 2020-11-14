@@ -13,27 +13,27 @@ class FieldLocation implements JsonSerializable
     /**
      * @var string
      */
-    private $range;
+    private string $range;
 
     /**
      * @var int
      */
-    private $x;
+    private int $x;
 
     /**
      * @var int
      */
-    private $y;
+    private int $y;
 
     /**
      * @var int
      */
-    private $width;
+    private int $width;
 
     /**
      * @var int
      */
-    private $height;
+    private int $height;
 
     /**
      * FieldLocation constructor.

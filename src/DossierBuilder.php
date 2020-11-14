@@ -16,7 +16,7 @@ class DossierBuilder implements DossierBuilderInterface
     /**
      * @var Dossier
      */
-    private $dossier;
+    private Dossier $dossier;
 
     /**
      * DossierBuilder constructor.

@@ -21,7 +21,7 @@
         "email": "php-cm-sign-sdk@chrissmits.nl"
     },
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.4",
         "ext-curl": "*",
         "ext-json": "*",
         "firebase/php-jwt": "^5.2",

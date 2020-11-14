@@ -20,12 +20,12 @@ class CmSign implements CmSignInterface
     /**
      * @var string
      */
-    protected $url;
+    protected string $url;
 
     /**
      * @var string
      */
-    protected $token;
+    protected string $token;
 
     /**
      * CmSignSdk constructor.

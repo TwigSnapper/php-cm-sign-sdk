@@ -11,52 +11,52 @@ class Invite
     /**
      * @var string
      */
-    private $id;
+    private string $id;
 
     /**
      * @var string
      */
-    private $inviteeId;
+    private string $inviteeId;
 
     /**
      * @var string
      */
-    private $inviteUri;
+    private string $inviteUri;
 
     /**
      * @var boolean
      */
-    private $email;
+    private bool $email;
 
     /**
      * @var object
      */
-    private $emailConfig;
+    private object $emailConfig;
 
     /**
      * @var boolean
      */
-    private $reminder;
+    private bool $reminder;
 
     /**
      * @var string|null
      */
-    private $emailSentAt;
+    private ?string $emailSentAt;
 
     /**
      * @var int
      */
-    private $expiresIn;
+    private int $expiresIn;
 
     /**
      * @var string
      */
-    private $expiresAt;
+    private string $expiresAt;
 
     /**
      * @var string
      */
-    private $createdAt;
+    private string $createdAt;
 
     /**
      * @return string

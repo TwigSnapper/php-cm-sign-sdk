@@ -13,67 +13,67 @@ class Invitee implements JsonSerializable
     /**
      * @var string
      */
-    private $id;
+    private string $id;
 
     /**
      * @var string
      */
-    private $name;
+    private string $name;
 
     /**
      * @var string
      */
-    private $email;
+    private string $email;
 
     /**
      * @var string
      */
-    private $locale;
+    private string $locale;
 
     /**
      * @var int
      */
-    private $position = 1;
+    private int $position = 1;
 
     /**
      * @var string[]
      */
-    private $identificationMethods;
+    private array $identificationMethods;
 
     /**
      * @var string
      */
-    private $phoneNumber;
+    private string $phoneNumber;
 
     /**
      * @var string|null
      */
-    private $reference;
+    private ?string $reference;
 
     /**
      * @var boolean
      */
-    private $readOnly = false;
+    private bool $readOnly = false;
 
     /**
      * @var string|null
      */
-    private $state;
+    private ?string $state;
 
     /**
      * @var string|null
      */
-    private $stateComment;
+    private ?string $stateComment;
 
     /**
      * @var string
      */
-    private $redirectUrl;
+    private string $redirectUrl;
 
     /**
      * @var Field[]
      */
-    private $fields;
+    private array $fields;
 
     /**
      * Invitee constructor.
