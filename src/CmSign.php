@@ -7,6 +7,7 @@ use chrissmits91\CmSignSdk\Entity\Field;
 use chrissmits91\CmSignSdk\Entity\FieldLocation;
 use chrissmits91\CmSignSdk\Entity\File;
 use chrissmits91\CmSignSdk\Entity\Invite;
+use Exception;
 use JsonMapper;
 use JsonMapper_Exception;
 use Spatie\SimpleExcel\SimpleExcelReader;
@@ -64,23 +65,30 @@ class CmSign implements CmSignInterface
      * @param string $path
      * @param string $documentId
      * @return Field[]
+     * @throws Exception
      */
     public function parseDocumentFieldsFile(string $path, string $documentId)
     {
         $fields = [];
 
         $documentFields = SimpleExcelReader::create($path)->getRows()->all();
-        foreach ($documentFields as $documentField) {
-            if (empty($documentField['name'])) {
-                continue;
+        foreach ($documentFields as $field) {
+            if (empty($field['name']) ||
+                empty($field['type']) ||
+                empty($field['x']) ||
+                empty($field['y']) ||
+                empty($field['width']) ||
+                empty($field['height']) ||
+                empty($field['page'])) {
+                throw new Exception("{$field['name']} has an empty cell");
             }
-            $field = new Field($documentField['type'], $documentId, [
+            $field = new Field($field['type'], $documentId, [
                 new FieldLocation(
-                    (int)$documentField['x'],
-                    (int)$documentField['y'],
-                    (int)$documentField['width'],
-                    (int)$documentField['height'],
-                    $documentField['page']
+                    (int)$field['x'],
+                    (int)$field['y'],
+                    (int)$field['width'],
+                    (int)$field['height'],
+                    $field['page']
                 )
             ]);
             $fields[] = $field;
@@ -129,11 +137,12 @@ class CmSign implements CmSignInterface
 
     /**
      * @param Dossier $dossier
+     * @param int $expiresIn
      * @return Invite[]
      * @throws ErrorResponse
      * @throws JsonMapper_Exception
      */
-    public function sendInvites(Dossier $dossier)
+    public function sendInvites(Dossier $dossier, int $expiresIn = 2592000)
     {
         $request = new CmHttp();
         $request->setHeaders(['Authorization: Bearer ' . $this->token, 'Content-Type: application/json']);
@@ -142,7 +151,7 @@ class CmSign implements CmSignInterface
         foreach ($dossier->getInvitees() as $invitee) {
             $data[] = [
                 'inviteeId' => $invitee->getId(),
-                'expiresIn' => 2592000
+                'expiresIn' => $expiresIn
             ];
         }
 

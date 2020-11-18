@@ -42,7 +42,8 @@ interface CmSignInterface
 
     /**
      * @param Dossier $dossier
+     * @param int $expiresIn
      * @return mixed
      */
-    public function sendInvites(Dossier $dossier);
+    public function sendInvites(Dossier $dossier, int $expiresIn = 2592000);
 }
