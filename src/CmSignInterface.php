@@ -41,6 +41,12 @@ interface CmSignInterface
     public function createDossier(File $file, string $json, string $redirectUrl): Dossier;
 
     /**
+     * @param string $dossierId
+     * @return Dossier
+     */
+    public function getDossier(string $dossierId): Dossier;
+
+    /**
      * @param Dossier $dossier
      * @param int $expiresIn
      * @return mixed

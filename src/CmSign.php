@@ -118,8 +118,8 @@ class CmSign implements CmSignInterface
      * @param string $json
      * @param string $redirectUrl
      * @return array|Entity\Dossier
-     * @throws ErrorResponse
      * @throws JsonMapper_Exception
+     * @throws ErrorResponse
      */
     public function createDossier(File $file, string $json, string $redirectUrl): Dossier
     {
@@ -131,6 +131,22 @@ class CmSign implements CmSignInterface
 
         return $this->mapToEntity(
             $request->post($this->url . 'dossiers', $json),
+            new Dossier()
+        );
+    }
+
+    /**
+     * @param string $dossierId
+     * @return Dossier
+     * @throws JsonMapper_Exception|ErrorResponse
+     */
+    public function getDossier(string $dossierId): Dossier
+    {
+        $request = new CmHttp();
+        $request->setHeaders(['Authorization: Bearer ' . $this->token]);
+
+        return $this->mapToEntity(
+            $request->get($this->url . 'dossiers/' . $dossierId),
             new Dossier()
         );
     }
