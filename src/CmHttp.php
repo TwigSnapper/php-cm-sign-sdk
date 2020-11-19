@@ -42,6 +42,7 @@ class CmHttp implements CmHttpInterface
     {
         curl_setopt($this->ch, CURLOPT_URL, $url);
         if (count($queryParams) > 0) {
+            curl_setopt($this->ch, CURLOPT_POST, false);
             curl_setopt($this->ch, CURLOPT_POSTFIELDS, http_build_query($queryParams));
         }
 
