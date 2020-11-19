@@ -40,11 +40,11 @@ class CmHttp implements CmHttpInterface
      */
     public function get(string $url, array $queryParams = [])
     {
-        curl_setopt($this->ch, CURLOPT_URL, $url);
         if (count($queryParams) > 0) {
-            curl_setopt($this->ch, CURLOPT_POST, false);
-            curl_setopt($this->ch, CURLOPT_POSTFIELDS, http_build_query($queryParams));
+            $url .= '?' . http_build_query($queryParams);
         }
+
+        curl_setopt($this->ch, CURLOPT_URL, $url);
 
         return $this->handleResult(curl_exec($this->ch));
     }
