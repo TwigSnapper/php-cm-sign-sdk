@@ -47,7 +47,7 @@ class CmHttp implements CmHttpInterface
 
         curl_setopt($this->ch, CURLOPT_URL, $url);
 
-        return $this->handleResult(curl_exec($this->ch));
+        return $this->handleResult(curl_exec($this->ch), $returnRaw);
     }
 
     /**
