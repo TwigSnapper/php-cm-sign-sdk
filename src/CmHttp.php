@@ -35,10 +35,11 @@ class CmHttp implements CmHttpInterface
     /**
      * @param string $url
      * @param array $queryParams
+     * @param bool $returnRaw
      * @return object
      * @throws ErrorResponse
      */
-    public function get(string $url, array $queryParams = [])
+    public function get(string $url, array $queryParams = [], bool $returnRaw = false)
     {
         if (count($queryParams) > 0) {
             $url .= '?' . http_build_query($queryParams);
@@ -66,15 +67,21 @@ class CmHttp implements CmHttpInterface
 
     /**
      * @param $result
+     * @param bool $returnRaw
      * @return object
      * @throws ErrorResponse
      */
-    public function handleResult($result)
+    public function handleResult($result, bool $returnRaw = false)
     {
         $obj = json_decode($result);
         if (is_object($obj) && property_exists($obj, 'status') && !in_array($obj->status, [200, 201])) {
             throw new ErrorResponse($obj->message, $obj->status);
         }
+
+        if ($returnRaw) {
+            return $result;
+        }
+
         return $obj;
     }
 }

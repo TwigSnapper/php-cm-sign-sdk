@@ -17,9 +17,10 @@ interface CmHttpInterface
     /**
      * @param string $url
      * @param array $queryParams
+     * @param bool $returnRaw
      * @return mixed
      */
-    public function get(string $url, array $queryParams = []);
+    public function get(string $url, array $queryParams = [], bool $returnRaw = false);
 
     /**
      * @param string $url

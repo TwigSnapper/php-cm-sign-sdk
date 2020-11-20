@@ -110,7 +110,7 @@ class CmSign implements CmSignInterface
 
         return $request->get($this->url . 'dossiers/' . $dossier->getId() . '/download', [
             'type' => $type
-        ]);
+        ], true);
     }
 
     /**
