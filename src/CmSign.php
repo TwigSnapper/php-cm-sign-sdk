@@ -71,27 +71,39 @@ class CmSign implements CmSignInterface
     {
         $fields = [];
 
-        $documentFields = SimpleExcelReader::create($path)->getRows()->all();
-        foreach ($documentFields as $field) {
-            if (empty($field['name']) ||
-                empty($field['type']) ||
-                empty($field['x']) ||
-                empty($field['y']) ||
-                empty($field['width']) ||
-                empty($field['height']) ||
-                empty($field['page'])) {
-                throw new Exception("{$field['name']} has an empty cell");
+        $rows = SimpleExcelReader::create($path)->getRows()->all();
+        $rowsGroupedByName = [];
+        foreach ($rows as $row) {
+            if (empty($row['name']) ||
+                empty($row['type']) ||
+                empty($row['x']) ||
+                empty($row['y']) ||
+                empty($row['width']) ||
+                empty($row['height']) ||
+                empty($row['page'])) {
+                throw new Exception("{$row['name']} has an empty cell");
             }
-            $field = new Field($field['type'], $documentId, [
-                new FieldLocation(
-                    (int)$field['x'],
-                    (int)$field['y'],
-                    (int)$field['width'],
-                    (int)$field['height'],
-                    $field['page']
-                )
-            ]);
-            $fields[] = $field;
+            if (!isset($rowsGroupedByName[$row['name']])) {
+                $rowsGroupedByName[$row['name']] = [];
+            }
+            $rowsGroupedByName[$row['name']][] = $row;
+        }
+
+        foreach ($rowsGroupedByName as $group) {
+            $fieldLocations = [];
+            $fieldType = '';
+            foreach ($group as $item) {
+                $fieldType = $item['type'];
+                $fieldLocations[] = new FieldLocation(
+                    (int)$item['x'],
+                    (int)$item['y'],
+                    (int)$item['width'],
+                    (int)$item['height'],
+                    $item['page']
+                );
+            }
+            $row = new Field($fieldType, $documentId, $fieldLocations);
+            $fields[] = $row;
         }
 
         return $fields;
