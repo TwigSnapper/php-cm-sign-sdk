@@ -166,7 +166,8 @@ class CmSign implements CmSignInterface
         foreach ($dossier->getInvitees() as $invitee) {
             $data[] = [
                 'inviteeId' => $invitee->getId(),
-                'expiresIn' => $expiresIn
+                'expiresIn' => $expiresIn,
+                'email' => false,
             ];
         }
 
