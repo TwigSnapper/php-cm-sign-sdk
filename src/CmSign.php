@@ -193,43 +193,6 @@ class CmSign implements CmSignInterface
 
     /**
      * @param string $kid
-     * @return Branding
-     * @throws JsonMapper_Exception
-     * @throws ErrorResponse
-     */
-    public function getBranding(string $kid): Branding
-    {
-        $request = new CmHttp();
-        $request->setHeaders(['Authorization: Bearer ' . $this->token]);
-
-        return $this->mapToEntity(
-            $request->get($this->url . 'clients/' . $kid . '/branding'),
-            Branding::class
-        );
-    }
-
-    /**
-     * @param string $kid
-     * @param Branding $branding
-     * @return mixed
-     * @throws JsonMapper_Exception
-     * @throws ErrorResponse
-     */
-    public function setBranding(string $kid, Branding $branding): Branding
-    {
-        $request = new CmHttp();
-        $request->setHeaders(['Authorization: Bearer ' . $this->token, 'Content-Type: application/json']);
-
-        $data = json_encode($branding);
-
-        return $this->mapToEntity(
-            $request->post($this->url . 'clients/' . $kid . '/branding', $data),
-            Branding::class
-        );
-    }
-
-    /**
-     * @param string $kid
      * @param Webhook $webhook
      * @return Webhook
      * @throws ErrorResponse
@@ -319,6 +282,43 @@ class CmSign implements CmSignInterface
         return $this->mapToEntity(
             $request->delete($this->url . 'clients/' . $kid . '/webhooks/' . $webhookId),
             Webhook::class
+        );
+    }
+
+    /**
+     * @param string $kid
+     * @return Branding
+     * @throws JsonMapper_Exception
+     * @throws ErrorResponse
+     */
+    public function getBranding(string $kid): Branding
+    {
+        $request = new CmHttp();
+        $request->setHeaders(['Authorization: Bearer ' . $this->token]);
+
+        return $this->mapToEntity(
+            $request->get($this->url . 'clients/' . $kid . '/branding'),
+            Branding::class
+        );
+    }
+
+    /**
+     * @param string $kid
+     * @param Branding $branding
+     * @return mixed
+     * @throws JsonMapper_Exception
+     * @throws ErrorResponse
+     */
+    public function setBranding(string $kid, Branding $branding): Branding
+    {
+        $request = new CmHttp();
+        $request->setHeaders(['Authorization: Bearer ' . $this->token, 'Content-Type: application/json']);
+
+        $data = json_encode($branding);
+
+        return $this->mapToEntity(
+            $request->post($this->url . 'clients/' . $kid . '/branding', $data),
+            Branding::class
         );
     }
 
