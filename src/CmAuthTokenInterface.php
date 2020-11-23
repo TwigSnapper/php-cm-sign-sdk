@@ -1,6 +1,6 @@
 <?php
 
-namespace chrissmits91\CmSignSdk;
+namespace TwigSnapper\CmSignSdk;
 
 /**
  * Interface CmAuthTokenInterface

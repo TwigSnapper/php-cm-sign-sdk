@@ -1,25 +1,21 @@
 {
-    "name": "chrissmits91/php-cm-sign-sdk",
+    "name": "TwigSnapper/php-cm-sign-sdk",
     "description": "PHP SDK to interact with CM.com's Sign API",
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "chrissmits91\\CmSignSdk\\": "src/",
-            "chrissmits91\\CmSignSdk\\Entity\\": "src/Entity"
+            "TwigSnapper\\CmSignSdk\\": "src/",
+            "TwigSnapper\\CmSignSdk\\Entity\\": "src/Entity"
         }
     },
     "authors": [
         {
             "name": "Chris Smits",
-            "email": "info@chrissmits.nl",
-            "homepage": "https://github.com/chrissmits91/php-cm-sign-sdk",
+            "homepage": "https://github.com/TwigSnapper/php-cm-sign-sdk",
             "role": "Developer"
         }
     ],
-    "support": {
-        "email": "php-cm-sign-sdk@chrissmits.nl"
-    },
     "require": {
         "php": ">=7.4",
         "ext-curl": "*",

@@ -1,17 +1,17 @@
 <?php
 
-namespace chrissmits91\CmSignSdk;
+namespace TwigSnapper\CmSignSdk;
 
-use chrissmits91\CmSignSdk\Entity\Branding;
-use chrissmits91\CmSignSdk\Entity\Client;
-use chrissmits91\CmSignSdk\Entity\Dossier;
-use chrissmits91\CmSignSdk\Entity\Field;
-use chrissmits91\CmSignSdk\Entity\FieldValue;
-use chrissmits91\CmSignSdk\Entity\File;
-use chrissmits91\CmSignSdk\Entity\Identification;
-use chrissmits91\CmSignSdk\Entity\Invite;
-use chrissmits91\CmSignSdk\Entity\Payment;
-use chrissmits91\CmSignSdk\Entity\Webhook;
+use TwigSnapper\CmSignSdk\Entity\Branding;
+use TwigSnapper\CmSignSdk\Entity\Client;
+use TwigSnapper\CmSignSdk\Entity\Dossier;
+use TwigSnapper\CmSignSdk\Entity\Field;
+use TwigSnapper\CmSignSdk\Entity\FieldValue;
+use TwigSnapper\CmSignSdk\Entity\File;
+use TwigSnapper\CmSignSdk\Entity\Identification;
+use TwigSnapper\CmSignSdk\Entity\Invite;
+use TwigSnapper\CmSignSdk\Entity\Payment;
+use TwigSnapper\CmSignSdk\Entity\Webhook;
 
 /**
  * Interface CmSignInterface

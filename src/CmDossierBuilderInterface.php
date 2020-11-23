@@ -1,10 +1,10 @@
 <?php
 
-namespace chrissmits91\CmSignSdk;
+namespace TwigSnapper\CmSignSdk;
 
-use chrissmits91\CmSignSdk\Entity\File;
-use chrissmits91\CmSignSdk\Entity\Invitee;
-use chrissmits91\CmSignSdk\Entity\Owner;
+use TwigSnapper\CmSignSdk\Entity\File;
+use TwigSnapper\CmSignSdk\Entity\Invitee;
+use TwigSnapper\CmSignSdk\Entity\Owner;
 
 /**
  * Interface DossierBuilderInterface

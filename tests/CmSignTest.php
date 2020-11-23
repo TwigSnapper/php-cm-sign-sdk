@@ -1,9 +1,9 @@
 <?php
 
-use chrissmits91\CmSignSdk\CmSign;
-use chrissmits91\CmSignSdk\Entity\Dossier;
-use chrissmits91\CmSignSdk\Entity\File;
-use chrissmits91\CmSignSdk\Entity\Invite;
+use TwigSnapper\CmSignSdk\CmSign;
+use TwigSnapper\CmSignSdk\Entity\Dossier;
+use TwigSnapper\CmSignSdk\Entity\File;
+use TwigSnapper\CmSignSdk\Entity\Invite;
 use PHPUnit\Framework\TestCase;
 
 class CmSignTest extends TestCase

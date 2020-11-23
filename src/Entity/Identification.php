@@ -1,10 +1,10 @@
 <?php
 
-namespace chrissmits91\CmSignSdk\Entity;
+namespace TwigSnapper\CmSignSdk\Entity;
 
 /**
  * Class Identification
- * @package chrissmits91\CmSignSdk\Entity
+ * @package TwigSnapper\CmSignSdk\Entity
  */
 class Identification
 {

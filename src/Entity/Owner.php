@@ -1,6 +1,6 @@
 <?php
 
-namespace chrissmits91\CmSignSdk\Entity;
+namespace TwigSnapper\CmSignSdk\Entity;
 
 use JsonSerializable;
 
