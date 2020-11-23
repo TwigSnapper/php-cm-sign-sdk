@@ -3,11 +3,14 @@
 namespace chrissmits91\CmSignSdk;
 
 use chrissmits91\CmSignSdk\Entity\Branding;
+use chrissmits91\CmSignSdk\Entity\Client;
 use chrissmits91\CmSignSdk\Entity\Dossier;
 use chrissmits91\CmSignSdk\Entity\Field;
 use chrissmits91\CmSignSdk\Entity\FieldLocation;
 use chrissmits91\CmSignSdk\Entity\File;
+use chrissmits91\CmSignSdk\Entity\Identification;
 use chrissmits91\CmSignSdk\Entity\Invite;
+use chrissmits91\CmSignSdk\Entity\Payment;
 use chrissmits91\CmSignSdk\Entity\Webhook;
 use Exception;
 use JsonMapper;
@@ -39,6 +42,60 @@ class CmSign implements CmSignInterface
     {
         $this->url = $url;
         $this->token = $token;
+    }
+
+    /**
+     * @param Dossier $dossier
+     * @param string $type
+     * @return mixed
+     * @throws ErrorResponse
+     */
+    public function downloadDocument(Dossier $dossier, string $type = 'file')
+    {
+        $request = new CmHttp();
+        $request->setHeaders(['Authorization: Bearer ' . $this->token]);
+
+        return $request->get($this->url . 'dossiers/' . $dossier->getId() . '/download', [
+            'type' => $type
+        ], true);
+    }
+
+    /**
+     * @param File $file
+     * @param string $json
+     * @param string $redirectUrl
+     * @return array|Entity\Dossier
+     * @throws JsonMapper_Exception
+     * @throws ErrorResponse
+     */
+    public function createDossier(File $file, string $json, string $redirectUrl): Dossier
+    {
+        $request = new CmHttp();
+        $request->setHeaders([
+            'Authorization: Bearer ' . $this->token,
+            'Content-Type: application/json'
+        ]);
+
+        return $this->mapToEntity(
+            $request->post($this->url . 'dossiers', $json),
+            new Dossier()
+        );
+    }
+
+    /**
+     * @param string $dossierId
+     * @return Dossier
+     * @throws JsonMapper_Exception|ErrorResponse
+     */
+    public function getDossier(string $dossierId): Dossier
+    {
+        $request = new CmHttp();
+        $request->setHeaders(['Authorization: Bearer ' . $this->token]);
+
+        return $this->mapToEntity(
+            $request->get($this->url . 'dossiers/' . $dossierId),
+            new Dossier()
+        );
     }
 
     /**
@@ -113,60 +170,6 @@ class CmSign implements CmSignInterface
 
     /**
      * @param Dossier $dossier
-     * @param string $type
-     * @return mixed
-     * @throws ErrorResponse
-     */
-    public function downloadDocument(Dossier $dossier, string $type = 'file')
-    {
-        $request = new CmHttp();
-        $request->setHeaders(['Authorization: Bearer ' . $this->token]);
-
-        return $request->get($this->url . 'dossiers/' . $dossier->getId() . '/download', [
-            'type' => $type
-        ], true);
-    }
-
-    /**
-     * @param File $file
-     * @param string $json
-     * @param string $redirectUrl
-     * @return array|Entity\Dossier
-     * @throws JsonMapper_Exception
-     * @throws ErrorResponse
-     */
-    public function createDossier(File $file, string $json, string $redirectUrl): Dossier
-    {
-        $request = new CmHttp();
-        $request->setHeaders([
-            'Authorization: Bearer ' . $this->token,
-            'Content-Type: application/json'
-        ]);
-
-        return $this->mapToEntity(
-            $request->post($this->url . 'dossiers', $json),
-            new Dossier()
-        );
-    }
-
-    /**
-     * @param string $dossierId
-     * @return Dossier
-     * @throws JsonMapper_Exception|ErrorResponse
-     */
-    public function getDossier(string $dossierId): Dossier
-    {
-        $request = new CmHttp();
-        $request->setHeaders(['Authorization: Bearer ' . $this->token]);
-
-        return $this->mapToEntity(
-            $request->get($this->url . 'dossiers/' . $dossierId),
-            new Dossier()
-        );
-    }
-
-    /**
-     * @param Dossier $dossier
      * @param int $expiresIn
      * @return Invite[]
      * @throws ErrorResponse
@@ -188,6 +191,114 @@ class CmSign implements CmSignInterface
         return $this->mapToEntities(
             $request->post($this->url . 'dossiers/' . $dossier->getId() . '/invites', json_encode($data)),
             Invite::class
+        );
+    }
+
+    /**
+     * @param string $dossierId
+     * @param string $inviteeId
+     * @return Identification[]
+     * @throws JsonMapper_Exception
+     * @throws ErrorResponse
+     */
+    public function getInviteeIdentifications(string $dossierId, string $inviteeId): array
+    {
+        $request = new CmHttp();
+        $request->setHeaders(['Authorization: Bearer ' . $this->token]);
+
+        return $this->mapToEntities(
+            $request->get($this->url . 'dossiers/' . $dossierId . '/invitees/' . $inviteeId . '/identifications'),
+            Identification::class
+        );
+    }
+
+    /**
+     * @param string $dossierId
+     * @param string $inviteeId
+     * @return Payment[]
+     * @throws ErrorResponse
+     * @throws JsonMapper_Exception
+     */
+    public function getInviteePayments(string $dossierId, string $inviteeId): array
+    {
+        $request = new CmHttp();
+        $request->setHeaders(['Authorization: Bearer ' . $this->token]);
+
+        return $this->mapToEntities(
+            $request->get($this->url . 'dossiers/' . $dossierId . '/invitees/' . $inviteeId . '/payments'),
+            Payment::class
+        );
+    }
+
+    /**
+     * @param Client $client
+     * @return Client
+     * @throws JsonMapper_Exception
+     * @throws ErrorResponse
+     */
+    public function createClient(Client $client): Client
+    {
+        $request = new CmHttp();
+        $request->setHeaders(['Authorization: Bearer ' . $this->token, 'Content-Type: application/json']);
+
+        $data = json_encode($client);
+
+        return $this->mapToEntity(
+            $request->post($this->url . 'clients', $data),
+            Client::class
+        );
+    }
+
+    /**
+     * @return array
+     * @throws JsonMapper_Exception
+     * @throws ErrorResponse
+     */
+    public function listClients(): array
+    {
+        $request = new CmHttp();
+        $request->setHeaders(['Authorization: Bearer ' . $this->token]);
+
+        return $this->mapToEntities(
+            $request->get($this->url . 'clients'),
+            Client::class
+        );
+    }
+
+    /**
+     * @param string $kid
+     * @return Client
+     * @throws ErrorResponse
+     * @throws JsonMapper_Exception
+     */
+    public function getClient(string $kid): Client
+    {
+        $request = new CmHttp();
+        $request->setHeaders(['Authorization: Bearer ' . $this->token]);
+
+        return $this->mapToEntity(
+            $request->get($this->url . 'clients/' . $kid),
+            Client::class
+        );
+    }
+
+    /**
+     * @param string $kid
+     * @param Client $client
+     * @return Client
+     * @throws JsonMapper_Exception
+     * @throws ErrorResponse
+     */
+    public function updateClient(string $kid, Client $client): Client
+    {
+        $request = new CmHttp();
+        $request->setHeaders(['Authorization: Bearer ' . $this->token, 'Content-Type: application/json']);
+
+        $data = json_encode($client);
+
+        return $this->mapToEntity(
+            $request->put($this->url . 'clients/' . $kid, $data),
+            Client::class
         );
     }
 

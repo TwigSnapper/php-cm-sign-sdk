@@ -3,11 +3,13 @@
 namespace chrissmits91\CmSignSdk;
 
 use chrissmits91\CmSignSdk\Entity\Branding;
+use chrissmits91\CmSignSdk\Entity\Client;
 use chrissmits91\CmSignSdk\Entity\Dossier;
 use chrissmits91\CmSignSdk\Entity\Field;
 use chrissmits91\CmSignSdk\Entity\File;
 use chrissmits91\CmSignSdk\Entity\Identification;
 use chrissmits91\CmSignSdk\Entity\Invite;
+use chrissmits91\CmSignSdk\Entity\Payment;
 use chrissmits91\CmSignSdk\Entity\Webhook;
 
 /**
@@ -62,7 +64,38 @@ interface CmSignInterface
      * @param string $inviteeId
      * @return Identification[]
      */
-    public function getDossierInviteeIdentifications(string $dossierId, string $inviteeId): array;
+    public function getInviteeIdentifications(string $dossierId, string $inviteeId): array;
+
+    /**
+     * @param string $dossierId
+     * @param string $inviteeId
+     * @return Payment[]
+     */
+    public function getInviteePayments(string $dossierId, string $inviteeId): array;
+
+    /**
+     * @param Client $client
+     * @return Client
+     */
+    public function createClient(Client $client): Client;
+
+    /**
+     * @return array
+     */
+    public function listClients(): array;
+
+    /**
+     * @param string $kid
+     * @return Client
+     */
+    public function getClient(string $kid): Client;
+
+    /**
+     * @param string $kid
+     * @param Client $client
+     * @return Client
+     */
+    public function updateClient(string $kid, Client $client): Client;
 
     /**
      * @param string $kid
