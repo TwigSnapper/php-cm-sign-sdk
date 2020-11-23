@@ -11,7 +11,7 @@ use chrissmits91\CmSignSdk\Entity\Owner;
  * Class DossierBuilder
  * @package CmSignSdk
  */
-class DossierBuilder implements DossierBuilderInterface
+class CmDossierBuilder implements CmDossierBuilderInterface
 {
     /**
      * @var Dossier
@@ -42,7 +42,7 @@ class DossierBuilder implements DossierBuilderInterface
      * @param $locale
      * @return $this
      */
-    public function setLocale(string $locale): DossierBuilder
+    public function setLocale(string $locale): CmDossierBuilder
     {
         $this->dossier->setLocale($locale);
         return $this;
@@ -54,9 +54,9 @@ class DossierBuilder implements DossierBuilderInterface
      * example: 2592000     30 days
      * default: 2592000     30 days
      * @param int $seconds
-     * @return DossierBuilder
+     * @return CmDossierBuilder
      */
-    public function expiresIn(int $seconds): DossierBuilder
+    public function expiresIn(int $seconds): CmDossierBuilder
     {
         if ($seconds < 60) $seconds = 60;
         if ($seconds > 7776000) $seconds = 7776000;
@@ -69,9 +69,9 @@ class DossierBuilder implements DossierBuilderInterface
      * maximum: 7776000     90 days
      * example: 604800      7 days
      * @param int $seconds
-     * @return DossierBuilder
+     * @return CmDossierBuilder
      */
-    public function reminderIn(int $seconds): DossierBuilder
+    public function reminderIn(int $seconds): CmDossierBuilder
     {
         if ($seconds < 86400) $seconds = 86400;
         if ($seconds > 7776000) $seconds = 7776000;
@@ -83,7 +83,7 @@ class DossierBuilder implements DossierBuilderInterface
      * @param Owner[] $owners
      * @return mixed
      */
-    public function addOwners(array $owners): DossierBuilder
+    public function addOwners(array $owners): CmDossierBuilder
     {
         $this->dossier->setOwners(array_merge(
             $this->dossier->getOwners(),
@@ -95,9 +95,9 @@ class DossierBuilder implements DossierBuilderInterface
 
     /**
      * @param File[] $files
-     * @return DossierBuilder
+     * @return CmDossierBuilder
      */
-    public function addFiles(array $files): DossierBuilder
+    public function addFiles(array $files): CmDossierBuilder
     {
         $this->dossier->setFiles(array_merge(
             $this->dossier->getFiles(),
@@ -109,9 +109,9 @@ class DossierBuilder implements DossierBuilderInterface
 
     /**
      * @param Invitee[] $invitees
-     * @return DossierBuilder
+     * @return CmDossierBuilder
      */
-    public function addInvitees(array $invitees): DossierBuilder
+    public function addInvitees(array $invitees): CmDossierBuilder
     {
         $this->dossier->setInvitees(array_merge(
             $this->dossier->getInvitees(),
