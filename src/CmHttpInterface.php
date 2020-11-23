@@ -28,4 +28,17 @@ interface CmHttpInterface
      * @return mixed
      */
     public function post(string $url, $data);
+
+    /**
+     * @param string $url
+     * @param $data
+     * @return mixed
+     */
+    public function put(string $url, $data);
+
+    /**
+     * @param string $url
+     * @return mixed
+     */
+    public function delete(string $url);
 }

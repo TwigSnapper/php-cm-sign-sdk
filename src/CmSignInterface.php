@@ -6,6 +6,7 @@ use chrissmits91\CmSignSdk\Entity\Branding;
 use chrissmits91\CmSignSdk\Entity\Dossier;
 use chrissmits91\CmSignSdk\Entity\Field;
 use chrissmits91\CmSignSdk\Entity\File;
+use chrissmits91\CmSignSdk\Entity\Webhook;
 
 /**
  * Interface CmSignInterface
@@ -52,7 +53,7 @@ interface CmSignInterface
      * @param int $expiresIn
      * @return mixed
      */
-    public function sendInvites(Dossier $dossier, int $expiresIn = 2592000);
+    public function sendInvites(Dossier $dossier, int $expiresIn = 2592000): array;
 
     /**
      * @param string $kid
@@ -65,5 +66,40 @@ interface CmSignInterface
      * @param Branding $branding
      * @return mixed
      */
-    public function setBranding(string $kid, Branding $branding);
+    public function setBranding(string $kid, Branding $branding): Branding;
+
+    /**
+     * @param string $kid
+     * @param Webhook $webhook
+     * @return Webhook
+     */
+    public function createWebhook(string $kid, Webhook $webhook): Webhook;
+
+    /**
+     * @param string $kid
+     * @return array
+     */
+    public function listWebhooks(string $kid): array;
+
+    /**
+     * @param string $kid
+     * @param string $webhookId
+     * @return Webhook
+     */
+    public function getWebhook(string $kid, string $webhookId): Webhook;
+
+    /**
+     * @param string $kid
+     * @param string $webhookId
+     * @param Webhook $webhook
+     * @return Webhook
+     */
+    public function updateWebhook(string $kid, string $webhookId, Webhook $webhook): Webhook;
+
+    /**
+     * @param string $kid
+     * @param string $webhookId
+     * @return Webhook
+     */
+    public function deleteWebhook(string $kid, string $webhookId): Webhook;
 }

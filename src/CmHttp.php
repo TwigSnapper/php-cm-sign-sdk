@@ -66,6 +66,34 @@ class CmHttp implements CmHttpInterface
     }
 
     /**
+     * @param string $url
+     * @param $data
+     * @return mixed|void
+     * @throws ErrorResponse
+     */
+    public function put(string $url, $data)
+    {
+        curl_setopt($this->ch, CURLOPT_URL, $url);
+        curl_setopt($this->ch, CURLOPT_PUT, true);
+        curl_setopt($this->ch, CURLOPT_POSTFIELDS, $data);
+
+        return $this->handleResult(curl_exec($this->ch));
+    }
+
+    /**
+     * @param string $url
+     * @return mixed|void
+     * @throws ErrorResponse
+     */
+    public function delete(string $url)
+    {
+        curl_setopt($this->ch, CURLOPT_URL, $url);
+        curl_setopt($this->ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+
+        return $this->handleResult(curl_exec($this->ch));
+    }
+
+    /**
      * @param $result
      * @param bool $returnRaw
      * @return object

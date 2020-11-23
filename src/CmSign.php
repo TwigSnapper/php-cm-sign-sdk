@@ -8,6 +8,7 @@ use chrissmits91\CmSignSdk\Entity\Field;
 use chrissmits91\CmSignSdk\Entity\FieldLocation;
 use chrissmits91\CmSignSdk\Entity\File;
 use chrissmits91\CmSignSdk\Entity\Invite;
+use chrissmits91\CmSignSdk\Entity\Webhook;
 use Exception;
 use JsonMapper;
 use JsonMapper_Exception;
@@ -171,7 +172,7 @@ class CmSign implements CmSignInterface
      * @throws ErrorResponse
      * @throws JsonMapper_Exception
      */
-    public function sendInvites(Dossier $dossier, int $expiresIn = 2592000)
+    public function sendInvites(Dossier $dossier, int $expiresIn = 2592000): array
     {
         $request = new CmHttp();
         $request->setHeaders(['Authorization: Bearer ' . $this->token, 'Content-Type: application/json']);
@@ -214,7 +215,7 @@ class CmSign implements CmSignInterface
      * @throws JsonMapper_Exception
      * @throws ErrorResponse
      */
-    public function setBranding(string $kid, Branding $branding)
+    public function setBranding(string $kid, Branding $branding): Branding
     {
         $request = new CmHttp();
         $request->setHeaders(['Authorization: Bearer ' . $this->token, 'Content-Type: application/json']);
@@ -224,6 +225,100 @@ class CmSign implements CmSignInterface
         return $this->mapToEntity(
             $request->post($this->url . 'clients/' . $kid . '/branding', $data),
             Branding::class
+        );
+    }
+
+    /**
+     * @param string $kid
+     * @param Webhook $webhook
+     * @return Webhook
+     * @throws ErrorResponse
+     * @throws JsonMapper_Exception
+     */
+    public function createWebhook(string $kid, Webhook $webhook): Webhook
+    {
+        $request = new CmHttp();
+        $request->setHeaders(['Authorization: Bearer ' . $this->token, 'Content-Type: application/json']);
+
+        $data = json_encode($webhook);
+
+        return $this->mapToEntity(
+            $request->post($this->url . 'clients/' . $kid . '/webhooks', $data),
+            Webhook::class
+        );
+    }
+
+    /**
+     * @param string $kid
+     * @return array
+     * @throws JsonMapper_Exception
+     * @throws ErrorResponse
+     */
+    public function listWebhooks(string $kid): array
+    {
+        $request = new CmHttp();
+        $request->setHeaders(['Authorization: Bearer ' . $this->token]);
+
+        return $this->mapToEntities(
+            $request->get($this->url . 'clients/' . $kid . '/webhooks'),
+            Webhook::class
+        );
+    }
+
+    /**
+     * @param string $kid
+     * @param string $webhookId
+     * @return Webhook
+     * @throws JsonMapper_Exception
+     * @throws ErrorResponse
+     */
+    public function getWebhook(string $kid, string $webhookId): Webhook
+    {
+        $request = new CmHttp();
+        $request->setHeaders(['Authorization: Bearer ' . $this->token]);
+
+        return $this->mapToEntity(
+            $request->get($this->url . 'clients/' . $kid . '/webhooks/' . $webhookId),
+            Webhook::class
+        );
+    }
+
+    /**
+     * @param string $kid
+     * @param string $webhookId
+     * @param Webhook $webhook
+     * @return Webhook
+     * @throws JsonMapper_Exception
+     * @throws ErrorResponse
+     */
+    public function updateWebhook(string $kid, string $webhookId, Webhook $webhook): Webhook
+    {
+        $request = new CmHttp();
+        $request->setHeaders(['Authorization: Bearer ' . $this->token, 'Content-Type: application/json']);
+
+        $data = json_encode($webhook);
+
+        return $this->mapToEntity(
+            $request->put($this->url . 'clients/' . $kid . '/webhooks', $data),
+            Webhook::class
+        );
+    }
+
+    /**
+     * @param string $kid
+     * @param string $webhookId
+     * @return Webhook
+     * @throws JsonMapper_Exception
+     * @throws ErrorResponse
+     */
+    public function deleteWebhook(string $kid, string $webhookId): Webhook
+    {
+        $request = new CmHttp();
+        $request->setHeaders(['Authorization: Bearer ' . $this->token]);
+
+        return $this->mapToEntity(
+            $request->delete($this->url . 'clients/' . $kid . '/webhooks/' . $webhookId),
+            Webhook::class
         );
     }
 
@@ -245,7 +340,7 @@ class CmSign implements CmSignInterface
      * @return array
      * @throws JsonMapper_Exception
      */
-    public function mapToEntities($data, $entity)
+    public function mapToEntities($data, $entity): array
     {
         $mapper = new JsonMapper();
         return $mapper->mapArray($data, [], $entity);
