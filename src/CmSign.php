@@ -2,6 +2,7 @@
 
 namespace chrissmits91\CmSignSdk;
 
+use chrissmits91\CmSignSdk\Entity\Branding;
 use chrissmits91\CmSignSdk\Entity\Dossier;
 use chrissmits91\CmSignSdk\Entity\Field;
 use chrissmits91\CmSignSdk\Entity\FieldLocation;
@@ -186,6 +187,43 @@ class CmSign implements CmSignInterface
         return $this->mapToEntities(
             $request->post($this->url . 'dossiers/' . $dossier->getId() . '/invites', json_encode($data)),
             Invite::class
+        );
+    }
+
+    /**
+     * @param string $kid
+     * @return Branding
+     * @throws JsonMapper_Exception
+     * @throws ErrorResponse
+     */
+    public function getBranding(string $kid): Branding
+    {
+        $request = new CmHttp();
+        $request->setHeaders(['Authorization: Bearer ' . $this->token]);
+
+        return $this->mapToEntity(
+            $request->get($this->url . 'clients/' . $kid . '/branding'),
+            Branding::class
+        );
+    }
+
+    /**
+     * @param string $kid
+     * @param Branding $branding
+     * @return mixed
+     * @throws JsonMapper_Exception
+     * @throws ErrorResponse
+     */
+    public function setBranding(string $kid, Branding $branding)
+    {
+        $request = new CmHttp();
+        $request->setHeaders(['Authorization: Bearer ' . $this->token, 'Content-Type: application/json']);
+
+        $data = json_encode($branding);
+
+        return $this->mapToEntity(
+            $request->post($this->url . 'clients/' . $kid . '/branding', $data),
+            Branding::class
         );
     }
 

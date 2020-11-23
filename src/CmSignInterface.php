@@ -2,6 +2,7 @@
 
 namespace chrissmits91\CmSignSdk;
 
+use chrissmits91\CmSignSdk\Entity\Branding;
 use chrissmits91\CmSignSdk\Entity\Dossier;
 use chrissmits91\CmSignSdk\Entity\Field;
 use chrissmits91\CmSignSdk\Entity\File;
@@ -52,4 +53,17 @@ interface CmSignInterface
      * @return mixed
      */
     public function sendInvites(Dossier $dossier, int $expiresIn = 2592000);
+
+    /**
+     * @param string $kid
+     * @return Branding
+     */
+    public function getBranding(string $kid): Branding;
+
+    /**
+     * @param string $kid
+     * @param Branding $branding
+     * @return mixed
+     */
+    public function setBranding(string $kid, Branding $branding);
 }

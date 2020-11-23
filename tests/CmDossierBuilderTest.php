@@ -1,6 +1,6 @@
 <?php
 
-use chrissmits91\CmSignSdk\DossierBuilder;
+use chrissmits91\CmSignSdk\CmDossierBuilder;
 use chrissmits91\CmSignSdk\Entity\Field;
 use chrissmits91\CmSignSdk\Entity\FieldLocation;
 use chrissmits91\CmSignSdk\Entity\File;
@@ -8,7 +8,7 @@ use chrissmits91\CmSignSdk\Entity\Invitee;
 use chrissmits91\CmSignSdk\Entity\Owner;
 use PHPUnit\Framework\TestCase;
 
-class DossierBuilderTest extends TestCase
+class CmDossierBuilderTest extends TestCase
 {
     public function testDossierBuilder()
     {
@@ -19,7 +19,7 @@ class DossierBuilderTest extends TestCase
             ->setId('1234-0987-abcd-qwer')
             ->setName('Example Dossier v12');
 
-        $sut = new DossierBuilder('Example Dossier');
+        $sut = new CmDossierBuilder('Example Dossier');
         $sut->expiresIn(123456)
             ->addOwners([
                 new Owner('Joe', 'joe@example.com')
