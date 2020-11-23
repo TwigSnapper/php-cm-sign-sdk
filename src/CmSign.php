@@ -173,7 +173,7 @@ class CmSign implements CmSignInterface
 
         return $this->mapToEntities(
             $request->post($this->url . 'dossiers/' . $dossier->getId() . '/invites', json_encode($data)),
-            new Invite()
+            Invite::class
         );
     }
 
