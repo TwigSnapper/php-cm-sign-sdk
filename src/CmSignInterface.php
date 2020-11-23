@@ -6,6 +6,7 @@ use chrissmits91\CmSignSdk\Entity\Branding;
 use chrissmits91\CmSignSdk\Entity\Client;
 use chrissmits91\CmSignSdk\Entity\Dossier;
 use chrissmits91\CmSignSdk\Entity\Field;
+use chrissmits91\CmSignSdk\Entity\FieldValue;
 use chrissmits91\CmSignSdk\Entity\File;
 use chrissmits91\CmSignSdk\Entity\Identification;
 use chrissmits91\CmSignSdk\Entity\Invite;
@@ -18,26 +19,6 @@ use chrissmits91\CmSignSdk\Entity\Webhook;
  */
 interface CmSignInterface
 {
-    /**
-     * @param string $documentPath
-     * @return File
-     */
-    public function uploadDocument(string $documentPath): File;
-
-    /**
-     * @param string $path
-     * @param string $documentId
-     * @return Field[]
-     */
-    public function parseDocumentFieldsFile(string $path, string $documentId);
-
-    /**
-     * @param Dossier $dossier
-     * @param string $type
-     * @return mixed
-     */
-    public function downloadDocument(Dossier $dossier, string $type = 'file');
-
     /**
      * @param File $file
      * @param string $json
@@ -53,25 +34,78 @@ interface CmSignInterface
     public function getDossier(string $dossierId): Dossier;
 
     /**
+     * @param string $dossierId
+     * @param Dossier $dossier
+     * @return Dossier
+     */
+    public function updateDossier(string $dossierId, Dossier $dossier): Dossier;
+
+    /**
+     * @param string $dossierId
+     * @return Dossier
+     */
+    public function deleteDossier(string $dossierId): Dossier;
+
+    /**
+     * @param Dossier $dossier
+     * @param string $type
+     * @return mixed
+     */
+    public function downloadSignedDocument(Dossier $dossier, string $type = 'file');
+
+    /**
+     * @param string $dossierId
+     * @return Invite[]
+     */
+    public function listDossierInvites(string $dossierId): array;
+
+    /**
      * @param Dossier $dossier
      * @param int $expiresIn
      * @return Invite[]
      */
-    public function sendInvites(Dossier $dossier, int $expiresIn = 2592000): array;
+    public function createDossierInvites(Dossier $dossier, int $expiresIn = 2592000): array;
+
+    /**
+     * @param string $dossierId
+     * @param string $inviteId
+     * @return Invite
+     */
+    public function getDossierInvite(string $dossierId, string $inviteId): Invite;
+
+    /**
+     * @param string $dossierId
+     * @param string $inviteId
+     * @return Invite
+     */
+    public function deleteDossierInvite(string $dossierId, string $inviteId): Invite;
+
+    /**
+     * @param string $dossierId
+     * @param string $fieldId
+     * @return FieldValue
+     */
+    public function getDossierFieldValue(string $dossierId, string $fieldId): FieldValue;
+
+    /**
+     * @param string $documentPath
+     * @return File
+     */
+    public function uploadDocument(string $documentPath): File;
 
     /**
      * @param string $dossierId
      * @param string $inviteeId
      * @return Identification[]
      */
-    public function getInviteeIdentifications(string $dossierId, string $inviteeId): array;
+    public function listInviteeIdentifications(string $dossierId, string $inviteeId): array;
 
     /**
      * @param string $dossierId
      * @param string $inviteeId
      * @return Payment[]
      */
-    public function getInviteePayments(string $dossierId, string $inviteeId): array;
+    public function listInviteePayments(string $dossierId, string $inviteeId): array;
 
     /**
      * @param Client $client
@@ -144,4 +178,11 @@ interface CmSignInterface
      * @return mixed
      */
     public function setBranding(string $kid, Branding $branding): Branding;
+
+    /**
+     * @param string $path
+     * @param string $documentId
+     * @return Field[]
+     */
+    public function parseDocumentFieldsFile(string $path, string $documentId);
 }
