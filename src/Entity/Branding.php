@@ -1,66 +1,77 @@
 <?php
 
-
 namespace TwigSnapper\CmSignSdk\Entity;
 
-
+/**
+ * Class Branding
+ * @package TwigSnapper\CmSignSdk\Entity
+ */
 class Branding implements \JsonSerializable
 {
-    private string $buttonBackgroundColor;
-
-    private string $buttonTextColor;
-
-    private string $logo;
+    /**
+     * @var string|null
+     */
+    private ?string $buttonBackgroundColor = null;
 
     /**
-     * @return string
+     * @var string|null
      */
-    public function getButtonBackgroundColor(): string
+    private ?string $buttonTextColor = null;
+
+    /**
+     * @var string|null
+     */
+    private ?string $logo = null;
+
+    /**
+     * @return string|null
+     */
+    public function getButtonBackgroundColor(): ?string
     {
         return $this->buttonBackgroundColor;
     }
 
     /**
-     * @param string $buttonBackgroundColor
+     * @param string|null $buttonBackgroundColor
      * @return Branding
      */
-    public function setButtonBackgroundColor(string $buttonBackgroundColor): Branding
+    public function setButtonBackgroundColor(?string $buttonBackgroundColor): Branding
     {
         $this->buttonBackgroundColor = $buttonBackgroundColor;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getButtonTextColor(): string
+    public function getButtonTextColor(): ?string
     {
         return $this->buttonTextColor;
     }
 
     /**
-     * @param string $buttonTextColor
+     * @param string|null $buttonTextColor
      * @return Branding
      */
-    public function setButtonTextColor(string $buttonTextColor): Branding
+    public function setButtonTextColor(?string $buttonTextColor): Branding
     {
         $this->buttonTextColor = $buttonTextColor;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLogo(): string
+    public function getLogo(): ?string
     {
         return $this->logo;
     }
 
     /**
-     * @param string $logo
+     * @param string|null $logo
      * @return Branding
      */
-    public function setLogo(string $logo): Branding
+    public function setLogo(?string $logo): Branding
     {
         $this->logo = $logo;
         return $this;
