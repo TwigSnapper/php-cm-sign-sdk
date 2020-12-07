@@ -2,13 +2,11 @@
 
 namespace TwigSnapper\CmSignSdk\Entity;
 
-use JsonSerializable;
-
 /**
  * Class File
  * @package CmSignSdk\Entity
  */
-class File implements JsonSerializable
+class File implements \JsonSerializable
 {
     /**
      * @var string

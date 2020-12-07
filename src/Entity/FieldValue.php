@@ -2,7 +2,6 @@
 
 namespace TwigSnapper\CmSignSdk\Entity;
 
-
 /**
  * Class FieldValue
  * @package TwigSnapper\CmSignSdk\Entity
