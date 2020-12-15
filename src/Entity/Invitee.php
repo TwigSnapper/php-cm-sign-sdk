@@ -19,9 +19,9 @@ class Invitee implements \JsonSerializable
     private string $name;
 
     /**
-     * @var string
+     * @var string|null
      */
-    private string $email;
+    private ?string $email = null;
 
     /**
      * @var string
@@ -126,18 +126,18 @@ class Invitee implements \JsonSerializable
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
     /**
-     * @param string $email
+     * @param string|null $email
      * @return Invitee
      */
-    public function setEmail(string $email): Invitee
+    public function setEmail(?string $email): Invitee
     {
         $this->email = $email;
         return $this;
