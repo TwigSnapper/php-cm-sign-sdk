@@ -338,6 +338,7 @@ class Invitee implements \JsonSerializable
             'phoneNumber' => $this->phoneNumber,
             'readOnly' => $this->readOnly,
             'redirectUrl' => $this->redirectUrl,
+            'reference' => $this->reference
         ];
     }
 }
