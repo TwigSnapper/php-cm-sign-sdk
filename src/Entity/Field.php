@@ -26,13 +26,17 @@ class Field implements \JsonSerializable
     /**
      * @var string|null
      */
-    private ?string $tag;
+    private ?string $tag = null;
 
     /**
      * @var boolean
      */
     private bool $tagRequired = false;
 
+    /**
+     * @var boolean
+     */
+    private bool $required = true;
 
     /**
      * @var FieldLocation[]
@@ -148,6 +152,24 @@ class Field implements \JsonSerializable
     }
 
     /**
+     * @return bool
+     */
+    public function isRequired(): bool
+    {
+        return $this->required;
+    }
+    
+    /**
+     * @param bool $required
+     * @return Field
+     */
+    public function setRequired(bool $required): Field
+    {
+        $this->required = $required;
+        return $this;
+    }
+    
+    /**
      * @return FieldLocation[]
      */
     public function getLocations(): array
@@ -192,6 +214,7 @@ class Field implements \JsonSerializable
             'type' => $this->type,
             'file' => $this->file,
             'tag' => $this->tag,
+            'required' => $this->required,
             'tagRequired' => $this->tagRequired,
             'locations' => $this->locations,
         ];
