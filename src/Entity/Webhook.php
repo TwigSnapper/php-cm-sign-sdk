@@ -19,9 +19,9 @@ class Webhook implements \JsonSerializable
     private string $url;
 
     /**
-     * @var array
+     * @var array|null
      */
-    private array $headers;
+    private $headers;
 
     /**
      * @var string
@@ -78,10 +78,10 @@ class Webhook implements \JsonSerializable
     }
 
     /**
-     * @param array $headers
+     * @param array|null $headers
      * @return Webhook
      */
-    public function setHeaders(array $headers): Webhook
+    public function setHeaders($headers): Webhook
     {
         $this->headers = $headers;
         return $this;
