@@ -374,7 +374,6 @@ class CmSign implements CmSignInterface
         $request->setHeaders(['Authorization: Bearer ' . $this->token, 'Content-Type: application/json']);
 
         $data = json_encode($webhook);
-
         return $this->mapToEntity(
             $request->post($this->url . 'clients/' . $kid . '/webhooks', $data),
             new Webhook()
@@ -501,7 +500,7 @@ class CmSign implements CmSignInterface
     public function parseDocumentFieldsFile(string $path, string $documentId)
     {
         $fields = [];
-
+        
         $rows = SimpleExcelReader::create($path)->getRows()->all();
         $rowsGroupedByName = [];
         foreach ($rows as $row) {
@@ -520,7 +519,7 @@ class CmSign implements CmSignInterface
             $rowsGroupedByName[$row['name']][] = $row;
         }
 
-        foreach ($rowsGroupedByName as $group) {
+        foreach ($rowsGroupedByName as $fieldName => $group) {
             $fieldLocations = [];
             $fieldType = '';
             foreach ($group as $item) {
@@ -534,6 +533,10 @@ class CmSign implements CmSignInterface
                 );
             }
             $row = new Field($fieldType, $documentId, $fieldLocations);
+            if(is_array($group) && count($group) > 0 && isset($group[0]["niet verplicht"]) && (int)$group[0]["niet verplicht"] == 1) :
+                $row->setRequired(false);
+            endif;
+            
             $fields[] = $row;
         }
 
