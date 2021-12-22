@@ -1,32 +1,31 @@
 {
-    "name": "twig-snapper/php-cm-sign-sdk",
-    "version": "1.0.5",
-    "description": "PHP SDK to interact with CM.com's Sign API",
-    "type": "library",
-    "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "TwigSnapper\\CmSignSdk\\": "src/",
-            "TwigSnapper\\CmSignSdk\\Entity\\": "src/Entity"
-        }
-    },
-    "authors": [
-        {
-            "name": "Chris Smits",
-            "homepage": "https://github.com/TwigSnapper/php-cm-sign-sdk",
-            "role": "Developer"
-        }
-    ],
-    "require": {
-        "php": ">=7.4",
-        "ext-curl": "*",
-        "ext-json": "*",
-        "firebase/php-jwt": "^5.2",
-        "netresearch/jsonmapper": "^3.1",
-        "spatie/simple-excel": "^1.9"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "~4.8.35 || ~5.7 || ~6.4 || ~7.0",
-        "squizlabs/php_codesniffer": "~3.5"
-    }
+	"name" : "twig-snapper/php-cm-sign-sdk",
+	"version" : "1.0.6",
+	"description" : "PHP SDK to interact with CM.com's Sign API",
+	"type" : "library",
+	"license" : "MIT",
+	"autoload" : {
+		"psr-4" : {
+			"TwigSnapper\\CmSignSdk\\" : "src/",
+			"TwigSnapper\\CmSignSdk\\Entity\\" : "src/Entity"
+		}
+	},
+	"authors" : [{
+			"name" : "Chris Smits",
+			"homepage" : "https://github.com/TwigSnapper/php-cm-sign-sdk",
+			"role" : "Developer"
+		}
+	],
+	"require" : {
+		"php" : ">=7.4",
+		"ext-curl" : "*",
+		"ext-json" : "*",
+		"firebase/php-jwt" : "^5.2",
+		"netresearch/jsonmapper" : "^3.1",
+		"spatie/simple-excel" : "^1.9"
+	},
+	"require-dev" : {
+		"phpunit/phpunit" : "~4.8.35 || ~5.7 || ~6.4 || ~7.0",
+		"squizlabs/php_codesniffer" : "~3.5"
+	}
 }
